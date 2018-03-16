@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<Rtable-cell--head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <script src="scripts/jquery-3.3.1.min.js"></script>
+  <script src="scripts/less.js" data-poll="1000" data-relative-urls="false"></script>
+  <script type="text/javascript">(function ($) {
+  "use strict";
+  $.fn.responsiveTable = function() {
+
+    var toggleColumns = function($table) {
+      var selectedControls = [];
+      $table.find(".Accordion, .Tab").each( function() {
+        selectedControls.push( $(this).attr("aria-selected") );
+      });
+      var cellCount = 0, colCount = 0;
+      var setNum = $table.find(".Rtable-cell").length / Math.max( $table.find(".Tab").length, $table.find(".Accordion").length );
+      $table.find(".Rtable-cell").each( function() {
+        $(this).addClass("hiddenSmall");
+        if( selectedControls[colCount] === "true" ) $(this).removeClass("hiddenSmall");
+        cellCount++;
+        if( cellCount % setNum === 0 ) colCount++;
+      });
+    };
+    $(this).each(function(){ toggleColumns($(this)); });
+
+    $(this).find(".Tab").click( function() {
+      $(this).attr("aria-selected","true").siblings().attr("aria-selected","false");
+      toggleColumns( $(this).parents(".Rtable") );
+    });
+
+    $(this).find(".Accordion").click( function() {
+      $(this).attr("aria-selected", $(this).attr("aria-selected") !== "true" );
+      toggleColumns( $(this).parents(".Rtable") );
+    });
+
+  };
+}(jQuery));
+
+
+$(".js-RtableTabs, .js-RtableAccordions").responsiveTable();</script>
+  <link data-dump-line-numbers="all" data-global-vars='{ "myvar": "#ddffee", "mystr": "\"quoted\"" }' rel="stylesheet/less" type="text/css" href="less/styles.less">
+  <title>Mavaddat Javid's Resume updated</title>
+  <style type="text/css">
+    code {
+      white-space: pre-wrap;
+    }
+
+    span.smallcaps {
+      font-variant: small-caps;
+    }
+
+    span.underline {
+      text-decoration: underline;
+    }
+
+    div.column {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</Rtable-cell--head>
+
+<body>
+  <div class="table">
+    <div class="tbody">
+      <div class=" class="Rtable Rtable--3cols Rtable--collapse js-RtableAccordions">
+        <div class="Rtable-cell Rtable-cell--Rtable-cell--head superhead"> <em>Technical Skills</em>
+          <button class="Accordion" role="tab" aria-selected="true">Coding Langs</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>Languages</strong></em></div>
+          <div class="Rtable-cell foot">Python, Dart <img src="images/image001.png" alt="http://i.i.cbsi.com/cnwk.1d/i/tim/2011/11/23/Dart_logo_270x270.png" style="width:0.11944in;height:0.11944in" />, HTML5, JavaScript, CSS3, ASP.NET, SQL, Java, JPQL, C# <img src="images/image002.png"
+              alt="http://m6.net/images/asp-wp-content.jpg" style="width:0.21667in;height:0.10082in" />, C++, C, IBM Assembly, Perl, *nix Shells, PowerShell <img src="images/image003.png" alt="http://1.bp.blogspot.com/-iXZUqGyA9wU/UuV71G8wfyI/AAAAAAABijk/SEnm1GCmxjQ/s1600/windows_powershell_icon.png"
+              style="width:0.13942in;height:0.10153in" /></div>
+          <div class="tr odd">
+            <button class="Accordion" role="tab" aria-selected="true">API’s</button>
+            <div class="Rtable-cell Rtable-cell--head"><em><strong>API’s</strong></em></div>
+            <div class="Rtable-cell foot">Django, Java SE 7 (JDBC, Swing, RMI, AWT, JCE Cryptography)</div>
+          </div>
+          <div class="tr even">
+            <button class="Accordion" role="tab" aria-selected="true">IDE’s</button>
+            <div class="Rtable-cell Rtable-cell--head"><em><strong>Editor IDE</strong></em></div>
+            <div class="Rtable-cell">Vim, Visual Studio (2013, 2012, 2010), Eclipse, NetBeans, Emacs</div>
+          </div>
+          <div class="tr odd">
+            <button class="Accordion" role="tab" aria-selected="true">CMS’s</button>
+            <div class="Rtable-cell Rtable-cell--head"><em><strong>CMS’s</strong></em></div>
+            <div class="Rtable-cell foot">Drupal 8/7/6, Joomla, WordPress</div>
+          </div>
+          <div class="tr even">
+            <button class="Accordion" role="tab" aria-selected="true">OS's</button>
+            <div class="Rtable-cell Rtable-cell--head"><em><strong>Operating Systems</strong></em></div>
+            <div class="Rtable-cell foot">Chromium, Windows (every client version), Mac OS X (every version), UNIX (Solaris, AIX), Linux (Debian, Slackware, CentOS)</div>
+          </div>
+          <div class="tr odd">
+            <button class="Accordion" role="tab" aria-selected="true">Methods</button>
+            <div class="Rtable-cell Rtable-cell--head"><em><strong>Methodologies</strong></em></div>
+            <div class="Rtable-cell foot">OOP/OOD, UML, Agile Unified Process, Scrum, XP</div>
+          </div>
+          <div class="tr even">
+            <button class="Accordion" role="tab" aria-selected="true">DB's</button>
+            <div class="Rtable-cell Rtable-cell--head"><em><strong>Database Design</strong></em></div>
+            <div class="Rtable-cell foot">MySQL, SQL/PSM, LINQ</div>
+          </div>
+          <div class="tr odd">
+            <button class="Accordion" role="tab" aria-selected="true">Change tracking</button>
+            <div class="Rtable-cell Rtable-cell--head"><em><strong>Build Management</strong></em></div>
+            <div class="Rtable-cell foot">Git, GitHub, Microsoft Team Foundation Server, Perforce, Subversion, Concurrent Versions System</div>
+          </div>
+        </div>
+        <button class="Accordion" role="tab" aria-selected="true">Work</button>
+        <div class="Rtable-cell Rtable-cell--Rtable-cell--head superhead"><em>Experience</em>
+          <div class="tr even">
+            <div class="Rtable-cell">
+              <p>2015 Nov - Present                                                                                                                                                   </p>
+              <p><em><strong>Teaching coding, chess, math, English, and public speaking</strong></em></p>
+              <ul>
+                <li>
+                  <p>Independent contract tutoring at multiple education agencies in the Greater Vancouver area including</p>
+                  <ul>
+                    <li>
+                      <p><em>Wendu Education</em> in Burnaby, BC</p>
+                    </li>
+                    <li>
+                      <p>R.  L. Education Centre in Richmond, BC</p>
+                    </li>
+                    <li>
+                      <p>Little Ants Education in Richmond, BC</p>
+                    </li>
+                    <li>
+                      <p><em>Chess with Chan</em> at the Yaletown Roundhouse Community Centre, and</p>
+                    </li>
+                    <li>
+                      <p>University Neighbourhood Association at UBC.</p>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <p>Enthusiastic education of children ages 4 to 15 (pre-school to grade 7).</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr odd">
+            <div class="Rtable-cell">
+              <p>2014 June - Present Philippine Overseas Labour Office Vancouver, BC</p>
+              <p><em>IT Professional Services</em></p>
+              <ul>
+                <li>
+                  <p>Employed custom PowerShell scripts to automate functionality recovery (e.g., LAN printer address) due to external router’s DHCP IP address changes.</p>
+                </li>
+                <li>
+                  <p>Employed Microsoft Application Virtualization (App-V) to provide consistent and recoverable application availability between common workstations.</p>
+                </li>
+                <li>
+                  <p>Successfully honed office’s technological resilience by succinctly communicating key principles of security engineering (e.g., least privilege), best practice requirements to staff.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr even">
+            <div class="Rtable-cell">
+              <p>2014 Force of Nature Alliance Vancouver, BC</p>
+              <p><em>Community Outreach Manager</em></p>
+              <ul>
+                <li>
+                  <p>Determined organising to mobilise voters to support ecologically-responsible technologies, fuel-alternatives, and exuviating our dependence on tar-sands-based pipelines.</p>
+                </li>
+                <li>
+                  <p>Rallying team of cohorts to regularly engage the public in key political ridings by door-to-door canvassing, tabling, phone banking.</p>
+                </li>
+                <li>
+                  <p>Collaboratively assisting in NationBuilder frontend design using Sass for CSS, Liquid markup language, and responsive HTML5.</p>
+                </li>
+                <li>
+                  <p>Cultivating resource and team organising by engaging in ongoing leadership trainings by OrganizeBC.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr odd">
+            <div class="Rtable-cell">
+              <p>2014 April - June Mercy for Animals Canada Vancouver, BC</p>
+              <p><em>IT Assistant</em></p>
+              <ul>
+                <li>
+                  <p>Creatively transitioned designs (Adobe Photoshop CC, Illustrator CC) into responsive HTML5 websites with novel CSS3 markup to fulfil unique interface requirements.</p>
+                </li>
+                <li>
+                  <p>Quickly modernized, overhauled obsolete ASP.NET, C# webpages into company’s custom content management system using LAMP stack.</p>
+                </li>
+                <li>
+                  <p>Built PHP application to list nearest vegan restaurants for thousands of email clients from postal code or city name using REST API directory.</p>
+                </li>
+                <li>
+                  <p>Resourcefully created and updated webpages and templates by formatting, editing images and other materials for websites and emails. </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr even">
+            <div class="Rtable-cell">
+              <p>2014 January - March SKIO Music Inc. Vancouver, BC</p>
+              <p><em>Junior Software Engineer</em></p>
+              <ul>
+                <li>
+                  <p>Precisely ported current CMS website (WordPress) to a static HTML5, CSS3 responsive design (http://www.skiomusic.com) with added responsive customization.</p>
+                </li>
+                <li>
+                  <p>Independently created custom Tumblr theme from basic template with consistent brand scheme, custom Twitter feed box, responsive design (http://skio-music.tumblr.com).</p>
+                </li>
+                <li>
+                  <p>Collaborated with lead developer to write modules, functionality for Amazon AWS hosted (AWS S3 with Elastic BeanStalk Python application deployment) Django backend with dynamically generated JavaScript frontend.</p>
+                </li>
+                <li>
+                  <p>Swiftly corrected previously-incorrect DNS records by directly modifying several incorrect name records that allowed the team to coordinate their current site with their domain.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr odd">
+            <div class="Rtable-cell">
+              <p>2011–2012 Jila.net Media Inc. Vancouver, BC</p>
+              <p><em>Drupal Development Engineer</em></p>
+              <ul>
+                <li>
+                  <p>Designed, tested, and assembled custom-themed Drupal web platform for social networking. (http://www.godornogod.com; http://atheistrepublic.com)</p>
+                </li>
+                <li>
+                  <p>Diligently migrated entire company’s LAMP stack to Amazon AWS with Elastic Load Balancing on Auto-Scaling AMI’s using intuitive AWS Command Line Interface</p>
+                </li>
+                <li>
+                  <p>Developed, debugged custom modules with innovative forum technology to pioneer avenues of discussion between communities of diverse beliefs.</p>
+                </li>
+                <li>
+                  <p>Executed front-end security analysis along fourteen axes of vulnerability.</p>
+                </li>
+                <li>
+                  <p>Effectively executed requirements elicitation in communication with users and director.</p>
+                </li>
+                <li>
+                  <p>Intelligently prioritized start-up company requirements to realise brand vision.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr even">
+            <div class="Rtable-cell">
+              <p>2011–2012 EOS Lightmedia Inc. Vancouver, BC</p>
+              <p><em>Firmware</em> <em>Engineer for Microcontroller Lighting System</em></p>
+              <ul>
+                <li>
+                  <p>Worked harmoniously in team of lighting designer, lighting engineer, and electrical engineers to develop new LED lighting fixture product for company.</p>
+                </li>
+                <li>
+                  <p>Planned and designed LED layout on building-model for research centre in North Carolina.</p>
+                </li>
+                <li>
+                  <p>Successfully designed, implemented, and tested lightweight, efficient lighting-datagram router on open-source Arduino microcontrollers in Java IDE and C-based open-source code.</p>
+                </li>
+                <li>
+                  <p>Created user-friendly web-interface on Arduino microcontrollers with dynamic IP-address reassignment and debugging web page.</p>
+                </li>
+                <li>
+                  <p>Independently researched mechanisms for controlling seven-hundred smart-LED’s with ten separate microcontrollers and interfacing with public.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr odd">
+            <div class="Rtable-cell">
+              <p>2010–2011 Farzin Yadegari Architect Inc. North Vancouver, BC</p>
+              <p><em>Web Developer</em> <em>and IT Specialist</em></p>
+              <ul>
+                <li>
+                  <p>Generated highly effective networking solutions with limited resources to establish server-client relationships with multiple peripherals in office.</p>
+                </li>
+                <li>
+                  <p>Designed, coded, and published professional company website implementing jQuery interfaces on a customized WordPress platform.</p>
+                </li>
+                <li>
+                  <p>Coordinated design-schedules between Rtable-cell--head architect and senior architects.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="tr even">
+            <div class="Rtable-cell">
+              <p>2006 UBC Faculty of Applied Science Vancouver, BC</p>
+              <p><em>Software Engineering Research Assistant</em></p>
+              <ul>
+                <li>
+                  <p>Designed, implemented, and tested control system software on microcontroller (using IBM Assembly and MATLAB) for dynamically coordinating movement of precision motors to realize inkjet printing of organic thin-film transistors and supercapacitors.</p>
+                </li>
+                <li>
+                  <p>Investigated the research potential of organic supercapacitor and device fabrication using inkjet micropatterning.</p>
+                </li>
+                <li>
+                  <p>Prepared concise and clear verbal daily reports in close teamwork with research fellow and associate professor advisor. </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="tr odd">
+          <div class="Rtable-cell"><em>Education</em></div>
+        </div>
+        <div class="tr even">
+          <div class="Rtable-cell"><em>Volunteer Experience</em></div>
+          <div class="Rtable-cell">
+            <p>2005–2010 <em>University of British Columbia</em> Vancouver, BC</p>
+            <p>B.A.Sc. Computer Engineering program, Software Engineering specialization</p>
+            <ul>
+              <li>
+                <p>Dean’s list recognition of excellence for two semesters.</p>
+              </li>
+              <li>
+                <p>Fourth year in program.</p>
+              </li>
+              <li>
+                <p>Excelled as software development leader in multiple computer engineering project groups.</p>
+              </li>
+              <li>
+                <p>Project course in security engineering project with focus on designing usable software security and access control within distributed systems.</p>
+              </li>
+              <li>
+                <p>Granted NSERC Undergraduate Student Research Award to apply creative firmware engineering methods in four months of supervised lab research in EECE department.­­</p>
+              </li>
+            </ul>
+            <p>2000–2005 <em>Moorpark Community College</em> Moorpark, CA</p>
+            <p>Physics and Electrical Engineering</p>
+            <ul>
+              <li>
+                <p>Overall GPA of 3.63, A average.</p>
+              </li>
+              <li>
+                <p>Placed on Dean’s List for four semesters consecutively.</p>
+              </li>
+            </ul>
+            <p>USA national silver medallist of college speech and forensics team. </p>
+          </div>
+        </div>
+        <div class="tr odd">
+          <div class="Rtable-cell"><em>Interests</em></div>
+          <div class="Rtable-cell">
+            <p>Environmental advocacy (LeadNow, Dogwood Initiative, ForestEthics).</p>
+            <p>English teacher and learning Mandarin for four months in Hunan, China. </p>
+          </div>
+          <p>Competitive chess, public speaking, philosophy of science, ethics, Philosophers’ Cafés. </p>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>
