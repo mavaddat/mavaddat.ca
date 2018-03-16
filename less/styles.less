@@ -1,0 +1,197 @@
+/* Variables
+================================== */
+@bw: 3px;  // border width
+
+
+/* Tables
+================================== */
+.Rtable {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 3em 0;
+  padding: 0;
+}
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  // Default to full width
+  padding: 0.8em 1.2em;
+  overflow: hidden; // Or flex might break
+  list-style: none;
+  border: solid @bw white;
+  background: fade(slategrey,20%);
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
+}
+
+/* Table column sizing
+================================== */
+.Rtable--2cols > .Rtable-cell  { width: 50%; }
+.Rtable--3cols > .Rtable-cell  { width: 33.33%; }
+.Rtable--4cols > .Rtable-cell  { width: 25%; }
+.Rtable--5cols > .Rtable-cell  { width: 20%; }
+.Rtable--6cols > .Rtable-cell  { width: 16.6%; }
+
+
+// Individual cell sizing
+.Rtable-cell.Rtable-cell--1of1  { width: 100%; }
+.Rtable-cell.Rtable-cell--5of6  { width: 83.33; }
+.Rtable-cell.Rtable-cell--4of5  { width: 80%; }
+.Rtable-cell.Rtable-cell--3of4  { width: 75%; }
+.Rtable-cell.Rtable-cell--2of3  { width: 66.66%; }
+.Rtable-cell.Rtable-cell--3of5  { width: 60%; }
+.Rtable-cell.Rtable-cell--1of2  { width: 50%; }
+.Rtable-cell.Rtable-cell--2of4  { width: 40%; }
+.Rtable-cell.Rtable-cell--1of3  { width: 33.33%; }
+.Rtable-cell.Rtable-cell--1of4  { width: 25%; }
+.Rtable-cell.Rtable-cell--1of5  { width: 20%; }
+.Rtable-cell.Rtable-cell--1of6  { width: 16.66%; }
+
+.Rtable-cell--rowEnd {
+  @media all and (max-width: @breakpoint) { margin-bottom: 1em; }
+}
+
+.hiddenLarge {
+  @media all and (min-width: @breakpoint) {
+    display: none;
+  }
+}
+
+
+
+
+
+/* Page styling
+================================== */
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
+html {
+  height: 100%;
+  background-color: #EEE;
+}
+body {
+  box-sizing: border-box;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 800px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  background-color: white;
+  border: double 3px #DDD;
+  border-top: none; border-bottom: none;
+}
+h1, h2, h3, h4, h5, h6 { margin-top: 0; }
+h3 { font-size: 1.2em; }
+h4 { font-size: 1em; }
+strong { color: darken(slategrey,20%); }
+@breakpoint: 500px;
+
+/* Responsive
+==================================== */
+@media all and (max-width: @breakpoint) {
+  .Rtable--collapse  {
+    display: block;
+    > .Rtable-cell { width: 100% !important; }
+    > .Rtable-cell--foot { margin-bottom: 1em; }
+  }
+}
+
+// Non-Flex modernizer fallback
+.no-flexbox .Rtable {
+  display: block;
+  > .Rtable-cell { width: 100%; }
+  > .Rtable-cell--foot { margin-bottom: 1em; }
+}
+@tableColour: slategrey;
+
+/* Apply styles
+================================== */
+.Rtable {
+  position: relative; top: @bw; left: @bw; //compensate for border offset
+}
+.Rtable-cell {
+  margin: -@bw 0 0 -@bw;  //border collapse offset
+  .Rtable-cell--light;
+}
+
+/* Cell styles
+================================== */
+.Rtable-cell--dark {
+  background-color: slategrey;
+  border-color: darken(@tableColour,10%);
+  color: white; > h1, > h2, > h3, > h4, > h5, > h6 { color: white; }
+}
+.Rtable-cell--medium {
+  background-color: mix(white,@tableColour,50%);
+  border-color: mix(white,@tableColour,40%);
+}
+.Rtable-cell--light {
+  background-color: white;
+  border-color: mix(white,@tableColour,80%);
+}
+.Rtable-cell--highlight {
+  background-color: lightgreen;
+  border-color: darken(lightgreen,10%);
+}
+.Rtable-cell--alert {
+  background-color: darkorange;
+  border-color: darken(darkorange,10%);
+  color: white; > h1, > h2, > h3, > h4, > h5, > h6 { color: white; }
+}
+
+// Inherit header and footer styles
+.Rtable-cell--head { .Rtable-cell--dark; }
+.Rtable-cell--foot { .Rtable-cell--medium; }
+@media all and (max-width: @breakpoint) {
+  .hiddenSmall {display: none; }
+}
+
+/* Accordion Styling
+==================================== */
+@accordionColour: darkcyan;
+@iconSize: 2em;
+
+.Accordion {
+  position: relative; top: -@bw; left: -@bw; //compensate for border offset
+  width: 100%;
+  margin: 0 0 0.5em 0;
+  padding: 0.6em 0.6em 0.6em (@iconSize);
+  border-radius: 0.5em;
+  text-align: left;
+  border: solid @bw mix(black,@accordionColour,15%);
+  background-color: @accordionColour;
+  font-weight: bold;
+  color: darken(@accordionColour,20%);
+  text-decoration: none;
+  transition: background-color 0.1s;
+  cursor: pointer;
+  @media all and (min-width: @breakpoint) { display: none; }
+  &:hover, &:focus {
+    outline: none;
+    filter: contrast(150%);
+  }
+  &[aria-selected="true"] {
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-width: 0;
+    background: mix(white,@accordionColour,70%);
+  }
+  &:before {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    left: 0.3em;
+    margin-top: -(@iconSize/1.75);
+    font-weight: normal;
+    font-size: @iconSize;
+    line-height: @iconSize;
+    background-size: @iconSize @iconSize;
+  }
+  &[aria-selected="true"]:before {
+    content: "-";
+  }
+}
+
+.js-RtableTabs, .js-RtableAccordions {
+  min-width: 240px;
+}
