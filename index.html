@@ -6,41 +6,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <script src="scripts/jquery-3.3.1.min.js"></script>
   <script src="scripts/less.js" data-poll="1000" data-relative-urls="false"></script>
-  <script type="text/javascript">(function ($) {
-  "use strict";
-  $.fn.responsiveTable = function() {
+  <script type="text/javascript">
+    (function($) {
+      "use strict";
+      $.fn.responsiveTable = function() {
 
-    var toggleColumns = function($table) {
-      var selectedControls = [];
-      $table.find(".Accordion, .Tab").each( function() {
-        selectedControls.push( $(this).attr("aria-selected") );
-      });
-      var cellCount = 0, colCount = 0;
-      var setNum = $table.find(".Rtable-cell").length / Math.max( $table.find(".Tab").length, $table.find(".Accordion").length );
-      $table.find(".Rtable-cell").each( function() {
-        $(this).addClass("hiddenSmall");
-        if( selectedControls[colCount] === "true" ) $(this).removeClass("hiddenSmall");
-        cellCount++;
-        if( cellCount % setNum === 0 ) colCount++;
-      });
-    };
-    $(this).each(function(){ toggleColumns($(this)); });
+        var toggleColumns = function($table) {
+          var selectedControls = [];
+          $table.find(".Accordion, .Tab").each(function() {
+            selectedControls.push($(this).attr("aria-selected"));
+          });
+          var cellCount = 0,
+            colCount = 0;
+          var setNum = $table.find(".Rtable-cell").length / Math.max($table.find(".Tab").length, $table.find(".Accordion").length);
+          $table.find(".Rtable-cell").each(function() {
+            $(this).addClass("hiddenSmall");
+            if (selectedControls[colCount] === "true") $(this).removeClass("hiddenSmall");
+            cellCount++;
+            if (cellCount % setNum === 0) colCount++;
+          });
+        };
+        $(this).each(function() {
+          toggleColumns($(this));
+        });
 
-    $(this).find(".Tab").click( function() {
-      $(this).attr("aria-selected","true").siblings().attr("aria-selected","false");
-      toggleColumns( $(this).parents(".Rtable") );
-    });
+        $(this).find(".Tab").click(function() {
+          $(this).attr("aria-selected", "true").siblings().attr("aria-selected", "false");
+          toggleColumns($(this).parents(".Rtable"));
+        });
 
-    $(this).find(".Accordion").click( function() {
-      $(this).attr("aria-selected", $(this).attr("aria-selected") !== "true" );
-      toggleColumns( $(this).parents(".Rtable") );
-    });
+        $(this).find(".Accordion").click(function() {
+          $(this).attr("aria-selected", $(this).attr("aria-selected") !== "true");
+          toggleColumns($(this).parents(".Rtable"));
+        });
 
-  };
-}(jQuery));
+      };
+    }(jQuery));
 
 
-$(".js-RtableTabs, .js-RtableAccordions").responsiveTable();</script>
+    $(".js-RtableTabs, .js-RtableAccordions").responsiveTable();
+  </script>
   <link data-dump-line-numbers="all" data-global-vars='{ "myvar": "#ddffee", "mystr": "\"quoted\"" }' rel="stylesheet/less" type="text/css" href="less/styles.less">
   <title>Mavaddat Javid's Resume updated</title>
   <style type="text/css">
@@ -70,48 +75,68 @@ $(".js-RtableTabs, .js-RtableAccordions").responsiveTable();</script>
 <body>
   <div class="table">
     <div class="tbody">
-      <div class="Rtable Rtable--3cols Rtable--collapse js-RtableAccordions">
-        <div class="Rtable-cell Rtable-cell--Rtable-cell--head superhead"> <em>Technical Skills</em>
+      <div class="Rtable">
+        <div class="Rtable--2cols Rtable--collapse js-RtableAccordions Rtable-cell--head superhead"> <em>Technical Skills</em>
           <button class="Accordion" role="tab" aria-selected="true">Coding Langs</button>
           <div class="Rtable-cell Rtable-cell--head"><em><strong>Languages</strong></em></div>
-          <div class="Rtable-cell foot">Python, Dart <img src="images/image001.png" alt="http://i.i.cbsi.com/cnwk.1d/i/tim/2011/11/23/Dart_logo_270x270.png" style="width:0.11944in;height:0.11944in" />, HTML5, JavaScript, CSS3, ASP.NET, SQL, Java, JPQL, C# <img src="images/image002.png"
+          <div class="Rtable-cell Rtable-cell--foot ">Python, Dart <img src="images/image001.png" alt="http://i.i.cbsi.com/cnwk.1d/i/tim/2011/11/23/Dart_logo_270x270.png" style="width:0.11944in;height:0.11944in" />, HTML5, JavaScript, CSS3, ASP.NET, SQL, Java, JPQL, C# <img src="images/image002.png"
               alt="http://m6.net/images/asp-wp-content.jpg" style="width:0.21667in;height:0.10082in" />, C++, C, IBM Assembly, Perl, *nix Shells, PowerShell <img src="images/image003.png" alt="http://1.bp.blogspot.com/-iXZUqGyA9wU/UuV71G8wfyI/AAAAAAABijk/SEnm1GCmxjQ/s1600/windows_powershell_icon.png"
               style="width:0.13942in;height:0.10153in" /></div>
-          <div class="tr odd">
-            <button class="Accordion" role="tab" aria-selected="true">API’s</button>
-            <div class="Rtable-cell Rtable-cell--head"><em><strong>API’s</strong></em></div>
-            <div class="Rtable-cell foot">Django, Java SE 7 (JDBC, Swing, RMI, AWT, JCE Cryptography)</div>
-          </div>
-          <div class="tr even">
-            <button class="Accordion" role="tab" aria-selected="true">IDE’s</button>
-            <div class="Rtable-cell Rtable-cell--head"><em><strong>Editor IDE</strong></em></div>
-            <div class="Rtable-cell">Vim, Visual Studio (2013, 2012, 2010), Eclipse, NetBeans, Emacs</div>
-          </div>
-          <div class="tr odd">
-            <button class="Accordion" role="tab" aria-selected="true">CMS’s</button>
-            <div class="Rtable-cell Rtable-cell--head"><em><strong>CMS’s</strong></em></div>
-            <div class="Rtable-cell foot">Drupal 8/7/6, Joomla, WordPress</div>
-          </div>
-          <div class="tr even">
-            <button class="Accordion" role="tab" aria-selected="true">OS's</button>
-            <div class="Rtable-cell Rtable-cell--head"><em><strong>Operating Systems</strong></em></div>
-            <div class="Rtable-cell foot">Chromium, Windows (every client version), Mac OS X (every version), UNIX (Solaris, AIX), Linux (Debian, Slackware, CentOS)</div>
-          </div>
-          <div class="tr odd">
-            <button class="Accordion" role="tab" aria-selected="true">Methods</button>
-            <div class="Rtable-cell Rtable-cell--head"><em><strong>Methodologies</strong></em></div>
-            <div class="Rtable-cell foot">OOP/OOD, UML, Agile Unified Process, Scrum, XP</div>
-          </div>
-          <div class="tr even">
-            <button class="Accordion" role="tab" aria-selected="true">DB's</button>
-            <div class="Rtable-cell Rtable-cell--head"><em><strong>Database Design</strong></em></div>
-            <div class="Rtable-cell foot">MySQL, SQL/PSM, LINQ</div>
-          </div>
-          <div class="tr odd">
-            <button class="Accordion" role="tab" aria-selected="true">Change tracking</button>
-            <div class="Rtable-cell Rtable-cell--head"><em><strong>Build Management</strong></em></div>
-            <div class="Rtable-cell foot">Git, GitHub, Microsoft Team Foundation Server, Perforce, Subversion, Concurrent Versions System</div>
-          </div>
+          <!--            <div class="tr odd">           -->
+
+          <button class="Accordion" role="tab" aria-selected="true">API’s</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>API’s</strong></em></div>
+          <div class="Rtable-cell Rtable-cell--foot">Django, Java SE 7 (JDBC, Swing, RMI, AWT, JCE Cryptography)</div>
+          <!--
+</div>
+          <div class="tr even">-->
+
+
+          <button class="Accordion" role="tab" aria-selected="true">IDE’s</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>Editor IDE</strong></em></div>
+          <div class="Rtable-cell Rtable-cell--foot">Vim, Visual Studio (2013, 2012, 2010), Eclipse, NetBeans, Emacs</div>
+          <!--
+</div>
+          <div class="tr odd">-->
+
+
+          <button class="Accordion" role="tab" aria-selected="true">CMS’s</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>CMS’s</strong></em></div>
+          <div class="Rtable-cell Rtable-cell--foot">Drupal 8/7/6, Joomla, WordPress</div>
+          <!--
+  </div>
+          <div class="tr even">  -->
+
+
+          <button class="Accordion" role="tab" aria-selected="true">OS's</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>Operating Systems</strong></em></div>
+          <div class="Rtable-cell Rtable-cell--foot">Chromium, Windows (every client version), Mac OS X (every version), UNIX (Solaris, AIX), Linux (Debian, Slackware, CentOS)</div>
+          <!--
+</div>
+          <div class="tr odd">-->
+
+
+          <button class="Accordion" role="tab" aria-selected="true">Methods</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>Methodologies</strong></em></div>
+          <div class="Rtable-cell Rtable-cell--foot">OOP/OOD, UML, Agile Unified Process, Scrum, XP</div>
+          <!--
+</div>
+          <div class="tr even">-->
+
+
+          <button class="Accordion" role="tab" aria-selected="true">DB's</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>Database Design</strong></em></div>
+          <div class="Rtable-cell Rtable-cell--foot">MySQL, SQL/PSM, LINQ</div>
+          <!--
+</div>
+          <div class="tr odd">-->
+
+
+          <button class="Accordion" role="tab" aria-selected="true">Change tracking</button>
+          <div class="Rtable-cell Rtable-cell--head"><em><strong>Build Management</strong></em></div>
+          <div class="Rtable-cell Rtable-cell--foot">Git, GitHub, Microsoft Team Foundation Server, Perforce, Subversion, Concurrent Versions System</div>
+          <!--            </div>           -->
+
         </div>
         <button class="Accordion" role="tab" aria-selected="true">Work</button>
         <div class="Rtable-cell Rtable-cell--Rtable-cell--head superhead"><em>Experience</em>
