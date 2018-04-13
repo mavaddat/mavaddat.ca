@@ -1,0 +1,80 @@
+==================================================================
+https://keybase.io/mavaddat
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://mavaddat.ca
+  * I am mavaddat (https://keybase.io/mavaddat) on keybase.
+  * I have a public key with fingerprint A0F1 C894 5FA0 3F0A 40AB  B121 9667 69C3 1FD6 37A1
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101967f18c2c706bc6f9c16d36c2cceaf7ca8026cec7a2e9f87f897f98736a59bea0a",
+      "fingerprint": "a0f1c8945fa03f0a40abb121966769c31fd637a1",
+      "host": "keybase.io",
+      "key_id": "966769c31fd637a1",
+      "kid": "0101967f18c2c706bc6f9c16d36c2cceaf7ca8026cec7a2e9f87f897f98736a59bea0a",
+      "uid": "fef677d070e7b6925a6d36d61faa4619",
+      "username": "mavaddat"
+    },
+    "merkle_root": {
+      "ctime": 1523605631,
+      "hash_meta": "c797d98037f280591854c3ef75e5a5e967d9cb91524f4a2730a781de16e03488",
+      "seqno": 2383990
+    },
+    "revoke": {
+      "sig_ids": [
+        "2e158067028c37837f62c3d7abe3bb7512617d7dad4b7e163bab392cd91d719a0f"
+      ]
+    },
+    "service": {
+      "hostname": "mavaddat.ca",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1523605632,
+  "expire_in": 157680000,
+  "prev": "0eb950da61ecadcee6fa66fd96cc6963416001b16b9e2ff1504bf2a84f796c0d",
+  "seqno": 18,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owGtU1tsFUUYPqcFkWIJoMFLEMKmUKMNmdnZndk52kSCGmOEiEFSi3g6l3961tOe
+Pe5uDzblJEbLRdGkL0AfpGlrwiXaRx4ASVorqCiRxEu8NRo0GsQokphYjYmzjcaE
++Oi+bHbmu8337ww1N+Ya8ge6w+lVn7Cx/HuXZK7zQtf+AUdGut8pDDhlmHtBj4Yk
+LZZD7RQchBHmlBkcKFcxRKWihitMNaF2QYEwTIkAuVSBYsIFbgJmAs4MDxihwucS
+BBJOm2PCSjfE1TispFZWIINVwD3fCEQMEh4SUmLXWlFGuSLYaEqYwJZYipKMYcNJ
+kcC6MLJr9qM4F+8/8P9z7r45OQOGMqYRQ8Ak5a4vMiVNsRHCo5hnwATiiugFi+4V
+NaG1SJ16m9MLcbkHinEUpVm5Kg0zCPZdQpFPCbYHFEmp2AupsEzFONM8QIQZN0A+
+x4HvKQKG+eALH+yJNFeSW7pnPOEyggQLsAZMAREvCGyOBJ6uRE7BJQHhHNkEMdSi
+MmTmSdhta0ucwjbHBexP9gWIMuQGirDAOlJXEc2EBCIl87FLMdNMC+1JZg2IFJJw
+V2mONcPcTtDZXs/s4lqo5uSzSV3TwDqVdViNozRSUY/dKKVptZD1kvZXM+AOkMW/
+JYoyrGj7l1hCDeIkjCq2J4u8tjK3zYFnqmEMxTBD+IwGyD6ZDdSy0YPkPtKCYlBC
+KwBqBKVGc6oU5ZR4mCKEJaaSg2sM9pEnjSsCzzALQfrfDnFgc4puq2mbq4i0Lwan
+3vRCfsW8XL4hd938huz+5JoWLvnnUp1/dMFs/sjl4dsPvj26/Fxt48fvdo1vvffX
+VbPeXbtXDyzbfPLBk6WOXZ2XL7a9/9sjbNFg/MH9e/IbX2dfTpwdX399ywO/bNo0
+Nv9MOTk9sWAMDc9MHL3z0Mi+h1ccmW1Zc3zL6Mwr+XM33fLaz6c+G7raQQeXF0af
+r0//dGXf8BV6987SscVXD+7c1jjx1cpFH+7ecvrMp9P++eavT3VNzVvS7Nz22LKR
+oXe2P3Hp+JP3PfcRnupq73/ziz/u+fbxmeY9659d2PHWSvNU++QP7PvWWucUG1x8
+ePyO3Dc7optf/HH/gdUn9p692LS2/UK8d7jemLa2bJ58KLl1w9KX6NIbfRn93vrn
+2qbv6K7P37hhw0jt5Vf/Ag==
+=yFCH
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mavaddat
+
+==================================================================
