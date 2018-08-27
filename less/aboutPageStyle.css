@@ -68,8 +68,16 @@ header .socialNetworkNavBar {
 	clear: both;
 }
 header .socialNetworkNavBar .socialNetworkNav {
+	display: inline-flex;
+	-webkit-flex-flow: row wrap;
+	-moz-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	-o-flex-flow: row wrap;
+	flex-flow: row wrap;
+	align-items: stretch;
 	border-radius: 50%;
 	cursor: pointer;
+	justify-content: space-around;
 }
 header .socialNetworkNavBar .socialNetworkNav img:hover {
 	opacity: 0.5;
@@ -195,10 +203,7 @@ footer .social-icons h1,h2,h3,h4,h5,h6 {
 ._14 {
     font-size: 1.4em;
 }
-ul {
-    padding:0;
-    list-style: none;
-}
+
 .social-icons {
     max-width: 255px;
     display:block;
@@ -239,6 +244,8 @@ ul.social-icons {
     background-color: #fff;
 }
 .fa-goodreads-g:hover {
+	border-color: #553B08;
+	box-shadow: 0 0 10px #553B08;
     background-color: #F4F1EA;
 }
 .fa-linkedin-in {
@@ -319,7 +326,7 @@ ul.social-icons {
 	text-decoration: none;
 }
 .socialNetworkNav span {
-	padding: 38px;
+	padding: 2.63vmax;
     display: inline;
     margin: 0 auto;
     height: 100%;
@@ -434,7 +441,7 @@ header .socialNetworkNavBar .socialNetworkNav {
 	height: 74px;
 	display: inline-block;
 	margin-right: 23px;
-}
+} 
 /* Main content and sections */
 .section1 .section1Title, .section2 .section1Title {
 	text-align: center;
