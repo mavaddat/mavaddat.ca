@@ -1,582 +1,810 @@
-﻿<!doctype html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-44575628-4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+    <script type="text/javascript" async="true">
+        (function () {
+            var host = window.location.hostname;
+            var element = document.createElement('script');
+            var firstScript = document.getElementsByTagName('script')[0];
+            var milliseconds = new Date().getTime();
+            var url = 'https://quantcast.mgr.consensu.org'
+                .concat('/choice/', 'DffhEACkSgqrA', '/', host, '/choice.js')__tcfapi
+                .concat('?timestamp=', milliseconds);
+            var uspTries = 0;
+            var uspTriesLimit = 3;
+            element.async = true;
+            element.type = 'text/javascript';
+            element.src = url;
 
-  gtag('config', 'UA-44575628-4');
-</script>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter50873759 = new Ya.Metrika2({
-                    id:50873759,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true,
-                    trackHash:true
-                });
-            } catch(e) { }
-        });
+            firstScript.parentNode.insertBefore(element, firstScript);
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/tag.js";
+            function makeStub() {
+                var TCF_LOCATOR_NAME = '__tcfapiLocator';
+                var queue = [];
+                var win = window;
+                var cmpFrame;
 
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks2");
-</script>
-<noscript>
-<div><img src="https://mc.yandex.ru/watch/50873759" style="position:absolute; left:-9999px;" alt="" /></div>
-</noscript>
-<!-- /Yandex.Metrika counter -->
-<!--
+                function addFrame() {
+                    var doc = win.document;
+                    var otherCMP = !!(win.frames[TCF_LOCATOR_NAME]);
+
+                    if (!otherCMP) {
+                        if (doc.body) {
+                            var iframe = doc.createElement('iframe');
+
+                            iframe.style.cssText = 'display:none';
+                            iframe.name = TCF_LOCATOR_NAME;
+                            doc.body.appendChild(iframe);
+                        } else {
+                            setTimeout(addFrame, 5);
+                        }
+                    }
+                    return !otherCMP;
+                }
+
+                function tcfAPIHandler() {
+                    var gdprApplies;
+                    var args = arguments;
+
+                    if (!args.length) {
+                        return queue;
+                    } else if (args[0] === 'setGdprApplies') {
+                        if (
+                            args.length > 3 &&
+                            args[2] === 2 &&
+                            typeof args[3] === 'boolean'
+                        ) {
+                            gdprApplies = args[3];
+                            if (typeof args[2] === 'function') {
+                                args[2]('set', true);
+                            }
+                        }
+                    } else if (args[0] === 'ping') {
+                        var retr = {
+                            gdprApplies: gdprApplies,
+                            cmpLoaded: false,
+                            cmpStatus: 'stub'
+                        };
+
+                        if (typeof args[2] === 'function') {
+                            args[2](retr);
+                        }
+                    } else {
+                        queue.push(args);
+                    }
+                }
+
+                function postMessageEventHandler(event) {
+                    var msgIsString = typeof event.data === 'string';
+                    var json = {};
+
+                    try {
+                        if (msgIsString) {
+                            json = JSON.parse(event.data);
+                        } else {
+                            json = event.data;
+                        }
+                    } catch (ignore) {}
+
+                    var payload = json.__tcfapiCall;
+
+                    if (payload) {
+                        window.__tcfapi(
+                            payload.command,
+                            payload.version,
+                            function (retValue, success) {
+                                var returnMsg = {
+                                    __tcfapiReturn: {
+                                        returnValue: retValue,
+                                        success: success,
+                                        callId: payload.callId
+                                    }
+                                };
+
+                                if (msgIsString) {
+                                    returnMsg = JSON.stringify(returnMsg);
+                                }
+                                event.source.postMessage(returnMsg, '*');
+                            },
+                            payload.parameter
+                        );
+                    }
+                }
+
+                while (win) {
+                    try {
+                        if (win.frames[TCF_LOCATOR_NAME]) {
+                            cmpFrame = win;
+                            break;
+                        }
+                    } catch (ignore) {}
+
+                    if (win === window.top) {
+                        break;
+                    }
+                    win = win.parent;
+                }
+                if (!cmpFrame) {
+                    addFrame();
+                    win.__tcfapi = tcfAPIHandler;
+                    win.addEventListener('message', postMessageEventHandler, false);
+                }
+            };
+
+            if (typeof module !== 'undefined') {
+                module.exports = makeStub;
+            } else {
+                makeStub();
+            }
+
+            var uspStubFunction = function () {
+                var arg = arguments;
+                if (typeof window.__uspapi !== uspStubFunction) {
+                    setTimeout(function () {
+                        if (typeof window.__uspapi !== 'undefined') {
+                            window.__uspapi.apply(window.__uspapi, arg);
+                        }
+                    }, 500);
+                }
+            };
+
+            var checkIfUspIsReady = function () {
+                uspTries++;
+                if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+                    console.warn('USP is not accessible');
+                } else {
+                    clearInterval(uspInterval);
+                }
+            };
+
+            if (typeof window.__uspapi === 'undefined') {
+
+                window.__uspapi = uspStubFunction;
+                var uspInterval = setInterval(checkIfUspIsReady, 6000);
+            }
+        })();
+    </script>
+    <!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+		__tcfapi('addEventListener', 2, ()=>{
+			var head = document.getElementsByTagName('head')[0];
+			var js = document.createElement("script");
+			js.type = "text/javascript";
+			js.src = "https://www.googletagmanager.com/gtag/js?id=UA-44575628-4";
+			js.async = true;
+			head.appendChild(js);
+		});
+        __tcfapi('addEventListener', 2, ()=>{window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-44575628-4');});
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        __tcfapi('addEventListener', 2, ()=>{(function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter50873759 = new Ya.Metrika2({
+                        id: 50873759,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true,
+                        trackHash: true
+                    });
+                } catch (e) {}
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks2");});
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/50873759" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!--
   <script src='scripts/live_console_runner.js'></script>
   <script src='scripts/css_live_reload_init.js'></script>  -->
-<meta name="yandex-verification" content="04ca54d67c3ba6a4" />
-<meta charset="UTF-8">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#63647d">
-<meta name="theme-color" content="#ffffff">
-<link rel="canonical" href="https://www.mavaddat.ca" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-<link data-dump-line-numbers="all" data-global-vars="" rel="stylesheet/less" type="text/css" href="less/styles.less">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-    less = {
-      async: true,
-      fileAsync: true,
-      poll: 1000,
-      functions: {},
-      relativeUrls: true,
-      rootpath: ":/mavaddat.ca/"
-    };
-  </script>
-<script type="text/javascript" src="scripts/less.js" data-env="production"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Twitter universal website tag code -->
-<script>
-!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
-a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
-// Insert Twitter Pixel ID and Standard Event data below
-twq('init','o0kgy');
-twq('track','PageView');
-</script>
-<!-- End Twitter universal website tag code -->
-<title>About Mavaddat</title>
-<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
-<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-<script>
-	function optout(){
-  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-	window['ga-disable-UA-44575628-4'] = true;}
-	onInitialise: function (status) {
-  var type = this.options.type;
-  var didConsent = this.hasConsented();
-  if (type == 'opt-in' && didConsent) {
-    // enable cookies
-  }
-  if (type == 'opt-out' && !didConsent) {
-    optout();
-  }
-},
- 
-onStatusChange: function(status, chosenBefore) {
-  var type = this.options.type;
-  var didConsent = this.hasConsented();
-  if (type == 'opt-in' && didConsent) {
-    // enable cookies
-  }
-  if (type == 'opt-out' && !didConsent) {
-    optout();
-  }
-},
- 
-onRevokeChoice: function() {
-  var type = this.options.type;
-  if (type == 'opt-in') {
-    optout();
-  }
-  if (type == 'opt-out') {
-    // enable cookies
-  }
-},</script>
-</head><body>
-<!--Start cookie consent-->
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script> 
-<script>
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-  "palette": {
-    "popup": {
-      "background": "#edeff5",
-      "text": "#838391"
-    },
-    "button": {
-      "background": "#4b81e8"
-    }
-  },
-  "theme": "edgeless",
-  "position": "top",
-  "static": true,
-  "type": "opt-out"
-})});
-</script><!--End cookie consent--> 
-<!-- Header content -->
-<header>
-  <div class="profileLogo"> 
-    <!-- Profile logo. Add a img tag in place of <span>. -->
-    <p class="logoPlaceholder"><img src="/images/logo/0.5x/Flush@0.5x.png" alt="Mavaddat Javid's logo"></p>
-  </div>
-  <div class="profilePhoto"> 
-    <!-- Profile photo --> 
-    <img src="images/me.png" alt="Face of Mavaddat Javid"> </div>
-  <!-- Identity details -->
-  <section class="profileHeader">
-    <h1>Mavaddat Javid</h1>
-    <h3>Tutor and Problem Solver Extraordinaire</h3>
-    <hr>
-    <p>I am a software engineer who studied philosophy (dual degrees)．I coach chess．I was born on an island in Polynesia. Education and qualifications:UBC B.A. in Philosophy, (Bachelor’s of Arts), UBC B.A.Sc. in Computer Engineering program, Software Engineering specialization (Bachelor’s of Applied Science). Experience: Five months volunteering with Writer’s Exchange Vancouver. Teaching English and learning Mandarin in China (four months, Hunan Fuyue Foreign Language College 湖南富岳外国语专修学院). Teaching chess as independent chess coach since 2010. Canadian ELO rating 1900. Notable accomplishments: Moorpark Community College Dean's List for four semesters consecutively. Multiple medals (gold, silver, bronze) in public speaking tournaments in 2004-2005 at Moorpark Community College. 2005 Bronze medalist in impromptu public speaking at Phi Rho Pi (National Junior and Community College Forensic Association and Honor Society) national tournament for community colleges. UBC Dean’s List recognition of excellence for two semesters.</p>
-  </section>
-  <!-- Links to Social network accounts -->
-  <aside class="socialNetworkNavBar fab fa-lg fa-layers">
-    <div class="socialNetworkNav"> <a class="fa-twitter" data-fa-transform="grow-6" href="http://twitter.com/mavaddat" target="_blank"></a></div>
-    <div class="socialNetworkNav"> <a class="fa-facebook" data-fa-transform="grow-6" href="https://www.facebook.com/mavaddat" target="_blank"></a> </div>
-    <div class="socialNetworkNav"> <a class="fa-linkedin-in" data-fa-transform="grow-6" href="https://www.linkedin.com/in/mavaddat/" target="_blank"></a> </div>
-    <div class="socialNetworkNav"> <a class="fa-goodreads-g" data-fa-transform="grow-6" href="https://www.goodreads.com/user/show/12501737-mavaddat" target="_blank"></a> </div>
-  </aside>
-</header>
-<!-- content -->
-<section class="mainContent"> 
-  <!-- Contact details -->
-  <section class="section1">
-    <h2 class="sectionTitle">Contact Details</h2>
-    <hr class="sectionTitleRule">
-    <hr class="sectionTitleRule2">
-    <div class="section1Content">
-      <p>Email : <a href="javascript:location='mailto:\u006a\u0061\u0076\u0069\u0064\u0040\u006d\u0061\u0076\u0061\u0064\u0064\u0061\u0074\u002e\u0063\u0061';void 0">&#106;&#097;&#118;&#105;&#100;&#064;&#109;&#097;&#118;&#097;&#100;&#100;&#097;&#116;&#046;&#099;&#097;</a></p>
-      <p>Website : mavaddat.ca</p>
-      <p style="display: none;">Phone :</p>
-      <p>Address : Vancouver, BC Canada</p>
-    </div>
-  </section>
-  <!-- Previous experience details -->
-  <section class="section2 skills">
-    <h2 class="sectionTitle">Professional Qualifications</h2>
-    <hr class="sectionTitleRule">
-    <hr class="sectionTitleRule2">
-    <article class="section2Content Rtable Rtable--2cols Rtable--collapse js-RtableAccordions">
-      <button class="Accordion" role="tab" aria-selected="true">Coding Langs</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">Languages</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">Python, Dart <img src="images/image001.png" alt="http://i.i.cbsi.com/cnwk.1d/i/tim/2011/11/23/Dart_logo_270x270.png" style="width:0.11944in;height:0.11944in" />, HTML5, JavaScript, CSS3, ASP.NET, SQL, Java, JPQL, C# <img src="images/image002.png"
-        alt="http://m6.net/images/asp-wp-content.jpg" style="/*width:0.21667in;*/height:0.10082in" />, C++, C, IBM Assembly, Perl, *nix Shells, PowerShell <img src="images/image003.png" alt="http://1.bp.blogspot.com/-iXZUqGyA9wU/UuV71G8wfyI/AAAAAAABijk/SEnm1GCmxjQ/s1600/windows_powershell_icon.png"
-        style="width:0.13942in;height:0.10153in" /></div>
-      <!--            <div class="tr odd">           -->
-      
-      <button class="Accordion" role="tab" aria-selected="false">API’s</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">API’s</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">Django, Java SE 7 (JDBC, Swing, RMI, AWT, JCE Cryptography)</div>
-      <!--
+
+
+    <meta name="yandex-verification" content="04ca54d67c3ba6a4" />
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#63647d">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://www.mavaddat.ca" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js">
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link data-dump-line-numbers="all" data-global-vars="" rel="stylesheet/less" type="text/css"
+        href="less/styles.less">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        less = {
+            async: true,
+            fileAsync: true,
+            poll: 1000,
+            functions: {},
+            relativeUrls: true,
+            rootpath: ":/mavaddat.ca/"
+        };
+    </script>
+    <script type="text/javascript" src="scripts/less.js" data-env="production"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Twitter universal website tag code -->
+    <script>
+        __tcfapi('addEventListener', 2, ()=>{! function (e, t, n, s, u, a) {
+            e.twq || (s = e.twq = function () {
+                    s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+                }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src =
+                '//static.ads-twitter.com/uwt.js',
+                a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+        }(window, document, 'script');
+        // Insert Twitter Pixel ID and Standard Event data below
+        twq('init', 'o0kgy');
+        twq('track', 'PageView');})
+    </script>
+    <!-- End Twitter universal website tag code -->
+    <title>About Mavaddat</title>
+    <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+    <script>
+        var __adobewebfontsappname__ = "dreamweaver"
+    </script>
+    <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript">
+    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Header content -->
+    <header>
+        <div class="profileLogo">
+            <!-- Profile logo. Add a img tag in place of <span>. -->
+            <p class="logoPlaceholder"><img src="/images/logo/0.5x/Flush@0.5x.png" alt="Mavaddat Javid's logo"></p>
+        </div>
+        <div class="profilePhoto">
+            <!-- Profile photo -->
+            <img src="images/me.png" alt="Face of Mavaddat Javid"> </div>
+        <!-- Identity details -->
+        <section class="profileHeader">
+            <h1>Mavaddat Javid</h1>
+            <h3>Tutor and Problem Solver Extraordinaire</h3>
+            <hr>
+            <p>I am a software engineer who studied philosophy (dual degrees). I coach chess. I was born on an island in
+                Polynesia. Education and qualifications:UBC B.A. in Philosophy, (Bachelor’s of Arts), UBC B.A.Sc. in
+                Computer Engineering program, Software Engineering specialization (Bachelor’s of Applied Science).
+                Experience: Five months volunteering with Writer’s Exchange Vancouver. Teaching English and learning
+                Mandarin in China (four months, Hunan Fuyue Foreign Language College 湖南富岳外国语专修学院). Teaching chess as
+                independent chess coach since 2010. Canadian ELO rating 1900. Notable accomplishments: Moorpark
+                Community College Dean's List for four semesters consecutively. Multiple medals (gold, silver, bronze)
+                in public speaking tournaments in 2004-2005 at Moorpark Community College. 2005 Bronze medalist in
+                impromptu public speaking at Phi Rho Pi (National Junior and Community College Forensic Association and
+                Honor Society) national tournament for community colleges. UBC Dean’s List recognition of excellence for
+                two semesters.</p>
+        </section>
+        <!-- Links to Social network accounts -->
+        <aside class="socialNetworkNavBar fab fa-lg fa-layers">
+            <div class="socialNetworkNav"> <a class="fa-twitter" data-fa-transform="grow-6"
+                    href="http://twitter.com/mavaddat" target="_blank"></a></div>
+            <div class="socialNetworkNav"> <a class="fa-facebook" data-fa-transform="grow-6"
+                    href="https://www.facebook.com/mavaddat" target="_blank"></a> </div>
+            <div class="socialNetworkNav"> <a class="fa-linkedin-in" data-fa-transform="grow-6"
+                    href="https://www.linkedin.com/in/mavaddat/" target="_blank"></a> </div>
+            <div class="socialNetworkNav"> <a class="fa-goodreads-g" data-fa-transform="grow-6"
+                    href="https://www.goodreads.com/user/show/12501737-mavaddat" target="_blank"></a> </div>
+        </aside>
+    </header>
+    <!-- content -->
+    <section class="mainContent">
+        <!-- Contact details -->
+        <section class="section1">
+            <h2 class="sectionTitle">Contact Details</h2>
+            <hr class="sectionTitleRule">
+            <hr class="sectionTitleRule2">
+            <div class="section1Content">
+                <p>Email : <a
+                        href="javascript:location='mailto:\u006a\u0061\u0076\u0069\u0064\u0040\u006d\u0061\u0076\u0061\u0064\u0064\u0061\u0074\u002e\u0063\u0061';void 0">&#106;&#097;&#118;&#105;&#100;&#064;&#109;&#097;&#118;&#097;&#100;&#100;&#097;&#116;&#046;&#099;&#097;</a>
+                </p>
+                <p>Website : mavaddat.ca</p>
+                <p style="display: none;">Phone :</p>
+                <p>Address : Vancouver, BC Canada</p>
+            </div>
+        </section>
+        <!-- Previous experience details -->
+        <section class="section2 skills">
+            <h2 class="sectionTitle">Professional Qualifications</h2>
+            <hr class="sectionTitleRule">
+            <hr class="sectionTitleRule2">
+            <article class="section2Content Rtable Rtable--2cols Rtable--collapse js-RtableAccordions">
+                <button class="Accordion" role="tab" aria-selected="true">Coding Langs</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">Languages</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">Python, Dart <img src="images/image001.png"
+                        alt="http://i.i.cbsi.com/cnwk.1d/i/tim/2011/11/23/Dart_logo_270x270.png"
+                        style="width:0.11944in;height:0.11944in" />, HTML5, JavaScript, CSS3, ASP.NET, SQL, Java, JPQL,
+                    C# <img src="images/image002.png" alt="http://m6.net/images/asp-wp-content.jpg"
+                        style="/*width:0.21667in;*/height:0.10082in" />, C++, C, IBM Assembly, Perl, *nix Shells,
+                    PowerShell <img src="images/image003.png"
+                        alt="http://1.bp.blogspot.com/-iXZUqGyA9wU/UuV71G8wfyI/AAAAAAABijk/SEnm1GCmxjQ/s1600/windows_powershell_icon.png"
+                        style="width:0.13942in;height:0.10153in" /></div>
+                <!--            <div class="tr odd">           -->
+
+                <button class="Accordion" role="tab" aria-selected="false">API’s</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">API’s</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">Django, Java SE 7 (JDBC, Swing, RMI, AWT, JCE Cryptography)
+                </div>
+                <!--
 </div>
           <div class="tr even">-->
-      
-      <button class="Accordion" role="tab" aria-selected="false">IDE’s</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">Editor & IDE's</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">Vim, Visual Studio (2013, 2012, 2010), Eclipse, NetBeans, Emacs</div>
-      <!--
+
+                <button class="Accordion" role="tab" aria-selected="false">IDE’s</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">Editor & IDE's</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">Vim, Visual Studio (2013, 2012, 2010), Eclipse, NetBeans,
+                    Emacs</div>
+                <!--
 </div>
           <div class="tr odd">-->
-      
-      <button class="Accordion" role="tab" aria-selected="false">CMS’s</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">CMS’s</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">Drupal 8/7/6, Joomla, WordPress</div>
-      <!--
+
+                <button class="Accordion" role="tab" aria-selected="false">CMS’s</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">CMS’s</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">Drupal 8/7/6, Joomla, WordPress</div>
+                <!--
   </div>
           <div class="tr even">  -->
-      
-      <button class="Accordion" role="tab" aria-selected="false">OS's</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">Operating Systems</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">Chromium, Windows (every client version), Mac OS X (every version), UNIX (Solaris, AIX), Linux (Debian, Slackware, CentOS)</div>
-      <!--
+
+                <button class="Accordion" role="tab" aria-selected="false">OS's</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">Operating Systems</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">Chromium, Windows (every client version), Mac OS X (every
+                    version), UNIX (Solaris, AIX), Linux (Debian, Slackware, CentOS)</div>
+                <!--
 </div>
           <div class="tr odd">-->
-      
-      <button class="Accordion" role="tab" aria-selected="false">Methods</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">Methodologies</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">OOP/OOD, UML, Agile Unified Process, Scrum, XP</div>
-      <!--
+
+                <button class="Accordion" role="tab" aria-selected="false">Methods</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">Methodologies</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">OOP/OOD, UML, Agile Unified Process, Scrum, XP</div>
+                <!--
 </div>
           <div class="tr even">-->
-      
-      <button class="Accordion" role="tab" aria-selected="false">DB's</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">Database Design</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">MySQL, SQL/PSM, LINQ</div>
-      <!--
+
+                <button class="Accordion" role="tab" aria-selected="false">DB's</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">Database Design</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">MySQL, SQL/PSM, LINQ</div>
+                <!--
 </div>
           <div class="tr odd">-->
-      
-      <button class="Accordion" role="tab" aria-selected="false">Change tracking</button>
-      <div class="Rtable-cell Rtable-cell--head">
-        <h3 class="sectionContentTitle">Build Management</h3>
-      </div>
-      <div class="Rtable-cell Rtable-cell--foot">Git, GitHub, Microsoft Team Foundation Server, Perforce, Subversion, Concurrent Versions System</div>
-    </article>
-    <!-- First Title & company details  -->
-    <article class="section2Content Rtable Rtable--1cols">
-      <hr class="sectionTitleRule">
-      <hr class="sectionTitleRule2">
-      <em class="sectionTitle">Experience</em> 
-      <!--
+
+                <button class="Accordion" role="tab" aria-selected="false">Change tracking</button>
+                <div class="Rtable-cell Rtable-cell--head">
+                    <h3 class="sectionContentTitle">Build Management</h3>
+                </div>
+                <div class="Rtable-cell Rtable-cell--foot">Git, GitHub, Microsoft Team Foundation Server, Perforce,
+                    Subversion, Concurrent Versions System</div>
+            </article>
+            <!-- First Title & company details  -->
+            <article class="section2Content Rtable Rtable--1cols">
+                <hr class="sectionTitleRule">
+                <hr class="sectionTitleRule2">
+                <em class="sectionTitle">Experience</em>
+                <!--
 <div class="Tablist" role="tablist">
       <button class="Tab" role="tab" aria-selected="true">Current Work</button>
       <button class="Tab" role="tab" aria-selected="false">Past Work</button>
     </div>-->
-      
-      <div class="Rtable-cell  Rtable-cell--head Rtable-cell--1of1">
-        <h2 class="sectionContentTitle">Current Work</h2>
-      </div>
-      <div class="Rtable-cell Rtable-cell--1of1">
-        <p class="sectionContentSubTitle">2015 Nov - Present</p>
-        <h3 class="sectionContentTitle">Teaching coding, chess, math, English, and public speaking</h3>
-        <ul>
-          <li>
-            <p>Independent contract tutoring at multiple education agencies in the Greater Vancouver area including</p>
-            <ul>
-              <li>
-                <p><em>Wendu Education</em> in Burnaby, BC</p>
-              </li>
-              <li>
-                <p><em>R.  L. Education Centre</em> in Richmond, BC</p>
-              </li>
-              <li>
-                <p><em>Little Ants Education</em> in Richmond, BC</p>
-              </li>
-              <li>
-                <p><em>Chess with Chan</em> at the Yaletown Roundhouse Community Centre, and</p>
-              </li>
-              <li>
-                <p><em>University Neighbourhood Association</em> at UBC.</p>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <p>Enthusiastic education of children ages 4 to 15 (pre-school to grade 7).</p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable-cell Rtable-cell--1of1">
-        <p class="sectionContentSubTitle"><span>2014 June - Present</span><span>Philippine Overseas Labour Office</span><span>Vancouver, BC</span></p>
-        <h3 class="sectionContentTitle">IT Professional Services</h3>
-        <ul>
-          <li>
-            <p>Employed custom PowerShell scripts to automate functionality recovery (e.g., LAN printer address) due to external router’s DHCP IP address changes.</p>
-          </li>
-          <li>
-            <p>Employed Microsoft Application Virtualization (App-V) to provide consistent and recoverable application availability between common workstations.</p>
-          </li>
-          <li>
-            <p>Successfully honed office’s technological resilience by succinctly communicating key principles of security engineering (e.g., least privilege), best practice requirements to staff.</p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable-cell  Rtable-cell--head Rtable-cell--1of1">
-        <h2 class="sectionContentTitle">Past Work</h2>
-      </div>
-      <div class="Rtable-cell  Rtable-cell--1of1">
-        <p class="sectionContentSubTitle"><span>2014 April - June</span><span>Mercy for Animals Canada</span><span>Vancouver, BC</span></p>
-        <h3 class="sectionContentTitle">IT Assistant</h3>
-        <ul>
-          <li>
-            <p>Creatively transitioned designs (Adobe Photoshop CC, Illustrator CC) into responsive HTML5 websites with novel CSS3 markup to fulfil unique interface requirements.</p>
-          </li>
-          <li>
-            <p>Quickly modernized, overhauled obsolete ASP.NET, C# webpages into company’s custom content management system using LAMP stack.</p>
-          </li>
-          <li>
-            <p>Built PHP application to list nearest vegan restaurants for thousands of email clients from postal code or city name using REST API directory.</p>
-          </li>
-          <li>
-            <p>Resourcefully created and updated webpages and templates by formatting, editing images and other materials for websites and emails. </p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable-cell Rtable-cell--1of1">
-        <p class="sectionContentSubTitle"><span>2014 January - March</span><span>SKIO Music Inc.</span><span> Vancouver, BC</span></p>
-        <h3 class="sectionContentTitle">Junior Software Engineer</h3>
-        <ul>
-          <li>
-            <p>Precisely ported current CMS website (WordPress) to a static HTML5, CSS3 responsive design (http://www.skiomusic.com) with added responsive customization.</p>
-          </li>
-          <li>
-            <p>Independently created custom Tumblr theme from basic template with consistent brand scheme, custom Twitter feed box, responsive design (http://skio-music.tumblr.com).</p>
-          </li>
-          <li>
-            <p>Collaborated with lead developer to write modules, functionality for Amazon AWS hosted (AWS S3 with Elastic BeanStalk Python application deployment) Django backend with dynamically generated JavaScript frontend.</p>
-          </li>
-          <li>
-            <p>Swiftly corrected previously-incorrect DNS records by directly modifying several incorrect name records that allowed the team to coordinate their current site with their domain.</p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable-cell Rtable-cell--1of1">
-        <p class="sectionContentSubTitle"><span>2011–2012</span><span>Jila.net Media Inc.</span><span>Vancouver, BC</span></p>
-        <h3 class="sectionContentTitle">Drupal Development Engineer</h3>
-        <ul>
-          <li>
-            <p>Designed, tested, and assembled custom-themed Drupal web platform for social networking. (http://www.godornogod.com; http://atheistrepublic.com)</p>
-          </li>
-          <li>
-            <p>Diligently migrated entire company’s LAMP stack to Amazon AWS with Elastic Load Balancing on Auto-Scaling AMI’s using intuitive AWS Command Line Interface</p>
-          </li>
-          <li>
-            <p>Developed, debugged custom modules with innovative forum technology to pioneer avenues of discussion between communities of diverse beliefs.</p>
-          </li>
-          <li>
-            <p>Executed front-end security analysis along fourteen axes of vulnerability.</p>
-          </li>
-          <li>
-            <p>Effectively executed requirements elicitation in communication with users and director.</p>
-          </li>
-          <li>
-            <p>Intelligently prioritized start-up company requirements to realise brand vision.</p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable-cell Rtable-cell--1of1">
-        <p class="sectionContentSubTitle"><span>2011–2012</span><span>EOS Lightmedia Inc.</span><span>Vancouver, BC</span></p>
-        <h3 class="sectionContentTitle">Firmware Engineer for Microcontroller Lighting System</h3>
-        <ul>
-          <li>
-            <p>Worked harmoniously in team of lighting designer, lighting engineer, and electrical engineers to develop new LED lighting fixture product for company.</p>
-          </li>
-          <li>
-            <p>Planned and designed LED layout on building-model for research centre in North Carolina.</p>
-          </li>
-          <li>
-            <p>Successfully designed, implemented, and tested lightweight, efficient lighting-datagram router on open-source Arduino microcontrollers in Java IDE and C-based open-source code.</p>
-          </li>
-          <li>
-            <p>Created user-friendly web-interface on Arduino microcontrollers with dynamic IP-address reassignment and debugging web page.</p>
-          </li>
-          <li>
-            <p>Independently researched mechanisms for controlling seven-hundred smart-LED’s with ten separate microcontrollers and interfacing with public.</p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable-cell Rtable-cell--1of1">
-        <p class="sectionContentSubTitle"><span>2010–2011</span><span>Farzin Yadegari Architect Inc.</span><span>North Vancouver, BC</span></p>
-        <h3 class="sectionContentTitle">Web Developer and IT Specialist</h3>
-        <ul>
-          <li>
-            <p>Generated highly effective networking solutions with limited resources to establish server-client relationships with multiple peripherals in office.</p>
-          </li>
-          <li>
-            <p>Designed, coded, and published professional company website implementing jQuery interfaces on a customized WordPress platform.</p>
-          </li>
-          <li>
-            <p>Coordinated design-schedules between head architect and senior architects.</p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable-cell Rtable-cell--1of1">
-        <p class="sectionContentSubTitle"><span>2006</span><span>UBC Faculty of Applied Science</span><span>Vancouver, BC</span></p>
-        <h3 class="sectionContentTitle">Software Engineering Research Assistant</h3>
-        <ul>
-          <li>
-            <p>Designed, implemented, and tested control system software on microcontroller (using IBM Assembly and MATLAB) for dynamically coordinating movement of precision motors to realize inkjet printing of organic thin-film transistors and supercapacitors.</p>
-          </li>
-          <li>
-            <p>Investigated the research potential of organic supercapacitor and device fabrication using inkjet micropatterning.</p>
-          </li>
-          <li>
-            <p>Prepared concise and clear verbal daily reports in close teamwork with research fellow and associate professor advisor. </p>
-          </li>
-        </ul>
-      </div>
-      <div class="Rtable Rtable--1cols"> 
-        <!--
+
+                <div class="Rtable-cell  Rtable-cell--head Rtable-cell--1of1">
+                    <h2 class="sectionContentTitle">Current Work</h2>
+                </div>
+                <div class="Rtable-cell Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle">2015 Nov - Present</p>
+                    <h3 class="sectionContentTitle">Teaching coding, chess, math, English, and public speaking</h3>
+                    <ul>
+                        <li>
+                            <p>Independent contract tutoring at multiple education agencies in the Greater Vancouver
+                                area including</p>
+                            <ul>
+                                <li>
+                                    <p><em>Wendu Education</em> in Burnaby, BC</p>
+                                </li>
+                                <li>
+                                    <p><em>R.  L. Education Centre</em> in Richmond, BC</p>
+                                </li>
+                                <li>
+                                    <p><em>Little Ants Education</em> in Richmond, BC</p>
+                                </li>
+                                <li>
+                                    <p><em>Chess with Chan</em> at the Yaletown Roundhouse Community Centre, and</p>
+                                </li>
+                                <li>
+                                    <p><em>University Neighbourhood Association</em> at UBC.</p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p>Enthusiastic education of children ages 4 to 15 (pre-school to grade 7).</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable-cell Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle"><span>2014 June - Present</span><span>Philippine Overseas Labour
+                            Office</span><span>Vancouver, BC</span></p>
+                    <h3 class="sectionContentTitle">IT Professional Services</h3>
+                    <ul>
+                        <li>
+                            <p>Employed custom PowerShell scripts to automate functionality recovery (e.g., LAN printer
+                                address) due to external router’s DHCP IP address changes.</p>
+                        </li>
+                        <li>
+                            <p>Employed Microsoft Application Virtualization (App-V) to provide consistent and
+                                recoverable application availability between common workstations.</p>
+                        </li>
+                        <li>
+                            <p>Successfully honed office’s technological resilience by succinctly communicating key
+                                principles of security engineering (e.g., least privilege), best practice requirements
+                                to staff.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable-cell  Rtable-cell--head Rtable-cell--1of1">
+                    <h2 class="sectionContentTitle">Past Work</h2>
+                </div>
+                <div class="Rtable-cell  Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle"><span>2014 April - June</span><span>Mercy for Animals
+                            Canada</span><span>Vancouver, BC</span></p>
+                    <h3 class="sectionContentTitle">IT Assistant</h3>
+                    <ul>
+                        <li>
+                            <p>Creatively transitioned designs (Adobe Photoshop CC, Illustrator CC) into responsive
+                                HTML5 websites with novel CSS3 markup to fulfil unique interface requirements.</p>
+                        </li>
+                        <li>
+                            <p>Quickly modernized, overhauled obsolete ASP.NET, C# webpages into company’s custom
+                                content management system using LAMP stack.</p>
+                        </li>
+                        <li>
+                            <p>Built PHP application to list nearest vegan restaurants for thousands of email clients
+                                from postal code or city name using REST API directory.</p>
+                        </li>
+                        <li>
+                            <p>Resourcefully created and updated webpages and templates by formatting, editing images
+                                and other materials for websites and emails. </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable-cell Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle"><span>2014 January - March</span><span>SKIO Music
+                            Inc.</span><span> Vancouver, BC</span></p>
+                    <h3 class="sectionContentTitle">Junior Software Engineer</h3>
+                    <ul>
+                        <li>
+                            <p>Precisely ported current CMS website (WordPress) to a static HTML5, CSS3 responsive
+                                design (http://www.skiomusic.com) with added responsive customization.</p>
+                        </li>
+                        <li>
+                            <p>Independently created custom Tumblr theme from basic template with consistent brand
+                                scheme, custom Twitter feed box, responsive design (http://skio-music.tumblr.com).</p>
+                        </li>
+                        <li>
+                            <p>Collaborated with lead developer to write modules, functionality for Amazon AWS hosted
+                                (AWS S3 with Elastic BeanStalk Python application deployment) Django backend with
+                                dynamically generated JavaScript frontend.</p>
+                        </li>
+                        <li>
+                            <p>Swiftly corrected previously-incorrect DNS records by directly modifying several
+                                incorrect name records that allowed the team to coordinate their current site with their
+                                domain.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable-cell Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle"><span>2011–2012</span><span>Jila.net Media
+                            Inc.</span><span>Vancouver, BC</span></p>
+                    <h3 class="sectionContentTitle">Drupal Development Engineer</h3>
+                    <ul>
+                        <li>
+                            <p>Designed, tested, and assembled custom-themed Drupal web platform for social networking.
+                                (http://www.godornogod.com; http://atheistrepublic.com)</p>
+                        </li>
+                        <li>
+                            <p>Diligently migrated entire company’s LAMP stack to Amazon AWS with Elastic Load Balancing
+                                on Auto-Scaling AMI’s using intuitive AWS Command Line Interface</p>
+                        </li>
+                        <li>
+                            <p>Developed, debugged custom modules with innovative forum technology to pioneer avenues of
+                                discussion between communities of diverse beliefs.</p>
+                        </li>
+                        <li>
+                            <p>Executed front-end security analysis along fourteen axes of vulnerability.</p>
+                        </li>
+                        <li>
+                            <p>Effectively executed requirements elicitation in communication with users and director.
+                            </p>
+                        </li>
+                        <li>
+                            <p>Intelligently prioritized start-up company requirements to realise brand vision.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable-cell Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle"><span>2011–2012</span><span>EOS Lightmedia
+                            Inc.</span><span>Vancouver, BC</span></p>
+                    <h3 class="sectionContentTitle">Firmware Engineer for Microcontroller Lighting System</h3>
+                    <ul>
+                        <li>
+                            <p>Worked harmoniously in team of lighting designer, lighting engineer, and electrical
+                                engineers to develop new LED lighting fixture product for company.</p>
+                        </li>
+                        <li>
+                            <p>Planned and designed LED layout on building-model for research centre in North Carolina.
+                            </p>
+                        </li>
+                        <li>
+                            <p>Successfully designed, implemented, and tested lightweight, efficient lighting-datagram
+                                router on open-source Arduino microcontrollers in Java IDE and C-based open-source code.
+                            </p>
+                        </li>
+                        <li>
+                            <p>Created user-friendly web-interface on Arduino microcontrollers with dynamic IP-address
+                                reassignment and debugging web page.</p>
+                        </li>
+                        <li>
+                            <p>Independently researched mechanisms for controlling seven-hundred smart-LED’s with ten
+                                separate microcontrollers and interfacing with public.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable-cell Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle"><span>2010–2011</span><span>Farzin Yadegari Architect
+                            Inc.</span><span>North Vancouver, BC</span></p>
+                    <h3 class="sectionContentTitle">Web Developer and IT Specialist</h3>
+                    <ul>
+                        <li>
+                            <p>Generated highly effective networking solutions with limited resources to establish
+                                server-client relationships with multiple peripherals in office.</p>
+                        </li>
+                        <li>
+                            <p>Designed, coded, and published professional company website implementing jQuery
+                                interfaces on a customized WordPress platform.</p>
+                        </li>
+                        <li>
+                            <p>Coordinated design-schedules between head architect and senior architects.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable-cell Rtable-cell--1of1">
+                    <p class="sectionContentSubTitle"><span>2006</span><span>UBC Faculty of Applied
+                            Science</span><span>Vancouver, BC</span></p>
+                    <h3 class="sectionContentTitle">Software Engineering Research Assistant</h3>
+                    <ul>
+                        <li>
+                            <p>Designed, implemented, and tested control system software on microcontroller (using IBM
+                                Assembly and MATLAB) for dynamically coordinating movement of precision motors to
+                                realize inkjet printing of organic thin-film transistors and supercapacitors.</p>
+                        </li>
+                        <li>
+                            <p>Investigated the research potential of organic supercapacitor and device fabrication
+                                using inkjet micropatterning.</p>
+                        </li>
+                        <li>
+                            <p>Prepared concise and clear verbal daily reports in close teamwork with research fellow
+                                and associate professor advisor. </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="Rtable Rtable--1cols">
+                    <!--
     <div class="Tablist" role="tablist">
       <button class="Tab" role="tab" aria-selected="true">Volunteering</button>
       <button class="Tab" role="tab" aria-selected="false">Education</button>
       <button class="Tab" role="tab" aria-selected="false">Interests</button>
     </div>    -->
-        
-        <div class="Rtable-cell Rtable-cell--head">
-          <h3 class="sectionContentTitle">Volunteer Experience</h3>
-        </div>
-        <div class="Rtable-cell Rtable-cell--1of1">
-          <p class="sectionContentSubTitle"><span>2014</span><span>Force of Nature Alliance</span><span>Vancouver, BC</span></p>
-          <h3 class="sectionContentTitle">Community Outreach Manager</h3>
-          <ul>
-            <li>
-              <p>Determined organising to mobilise voters to support ecologically-responsible technologies, fuel-alternatives, and exuviating our dependence on tar-sands-based pipelines.</p>
-            </li>
-            <li>
-              <p>Rallying team of cohorts to regularly engage the public in key political ridings by door-to-door canvassing, tabling, phone banking.</p>
-            </li>
-            <li>
-              <p>Collaboratively assisting in NationBuilder frontend design using Sass for CSS, Liquid markup language, and responsive HTML5.</p>
-            </li>
-            <li>
-              <p>Cultivating resource and team organising by engaging in ongoing leadership trainings by OrganizeBC.</p>
-            </li>
-            <li>
-              <p>Environmental advocacy (LeadNow, Dogwood Initiative, ForestEthics).</p>
-            </li>
-            <li>
-              <p>English teacher and learning Mandarin for four months in Hunan, China.</p>
-            </li>
-          </ul>
-        </div>
-        <div class="Rtable-cell Rtable-cell--head">
-          <h3 class="sectionContentTitle">Education</h3>
-        </div>
-        <div class="Rtable-cell Rtable-cell--1of1">
-          <p class="sectionContentSubTitle">2005–2010<em>University of British Columbia</em> Vancouver, BC</p>
-          <p>B.A.Sc. Computer Engineering program, Software Engineering specialization</p>
-          <ul>
-            <li>
-              <p>Dean’s list recognition of excellence for two semesters.</p>
-            </li>
-            <li>
-              <p>Fourth year in program.</p>
-            </li>
-            <li>
-              <p>Excelled as software development leader in multiple computer engineering project groups.</p>
-            </li>
-            <li>
-              <p>Project course in security engineering project with focus on designing usable software security and access control within distributed systems.</p>
-            </li>
-            <li>
-              <p>Granted NSERC Undergraduate Student Research Award to apply creative firmware engineering methods in four months of supervised lab research in EECE department.­­</p>
-            </li>
-          </ul>
-        </div>
-        <div class="Rtable-cell  Rtable-cell--1of1">
-          <p class="sectionContentSubTitle">2000–2005<em>Moorpark Community College</em>Moorpark, CA</p>
-          <p>Physics and Electrical Engineering</p>
-          <ul>
-            <li>
-              <p>Overall GPA of 3.63, A average.</p>
-            </li>
-            <li>
-              <p>Placed on Dean’s List for four semesters consecutively.</p>
-            </li>
-          </ul>
-          <p>USA national silver medallist of college speech and forensics team. </p>
-        </div>
-        <div class="Rtable-cell Rtable-cell--head">
-          <h3 class="sectionContentTitle">Interests</h3>
-        </div>
-        <div class="Rtable-cell">
-          <p>Competitive chess, public speaking, philosophy of science, ethics, Philosophers’ Cafés. </p>
-        </div>
-      </div>
-    </article>
-  </section>
-  <!-- Links to expore your past projects and download your CV -->
-  <aside class="externalResourcesNav"> <a href="https://files.acrobat.com/a/preview/9d1519ee-716d-4cbf-ad0e-9cefd434be89" target="_blank" title="Download CV Link">
-    <div class="externalResources">DOWNLOAD CV </div>
-    </a> <a href="https://www.behance.net/mavaddat" target="_blank" title="Behance Link">
-    <div class="externalResources">BEHANCE</div>
-    </a> <a href="https://github.com/mavaddat" target="_blank" title="Github Link">
-    <div class="externalResources">GITHUB</div>
-    </a> </aside>
-</section>
-<footer>
-  <hr>
-  <div class="social-icons"> 
-    <!--    <h4 class="_14">Follow me on</h4>-->
-    <ul class="social-icons">
-      <li><a href="https://www.facebook.com/mavaddat" class="social-icon"> <i class="fab fa-facebook"></i></a></li>
-      <li><a href="https://twitter.com/mavaddat" class="social-icon"> <i class="fab fa-twitter"></i></a></li>
-      <li><a href="https://mavaddat.wordpress.com?feed=rss" class="social-icon"> <i class="fas fa-rss"></i></a></li>
-      <li><a href="https://www.youtube.com/mavaddat" class="social-icon"> <i class="fab fa-youtube"></i></a></li>
-      <li><a href="https://www.linkedin.com/in/mavaddat/" class="social-icon"> <i class="fab fa-linkedin"></i></a></li>
-      <li><a href="https://plus.google.com/+MavaddatJavid" class="social-icon"> <i class="fab fa-google-plus"></i></a></li>
-    </ul>
-  </div>
-  <p class="footerDisclaimer">&copy; 2017 
-    <script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script> 
-    Copyrights - All Rights Reserved</p>
-  <p class="footerNote">Mavaddat Javid - <a href="javascript:location='mailto:\u006a\u0061\u0076\u0069\u0064\u0040\u006d\u0061\u0076\u0061\u0064\u0064\u0061\u0074\u002e\u0063\u0061';void 0">&#069;&#109;&#097;&#105;&#108;&#032;&#109;&#101;</a></p>
-</footer>
-<script>
-    (function($) {
-      "use strict";
-      $.fn.responsiveTable = function() {
 
-        var toggleColumns = function($table) {
-          var selectedControls = [];
-          $table.find(".Accordion, .Tab").each(function() {
-            selectedControls.push($(this).attr("aria-selected"));
-          });
-          var cellCount = 0,
-            colCount = 0;
-          var setNum = $table.find(".Rtable-cell").length / Math.max($table.find(".Tab").length, $table.find(".Accordion").length);
-          $table.find(".Rtable-cell").each(function() {
-            $(this).addClass("hiddenSmall");
-            if (selectedControls[colCount] === "true") $(this).removeClass("hiddenSmall");
-            cellCount++;
-            if (cellCount % setNum === 0) colCount++;
-          });
-        };
-        $(this).each(function() {
-          toggleColumns($(this));
-        });
+                    <div class="Rtable-cell Rtable-cell--head">
+                        <h3 class="sectionContentTitle">Volunteer Experience</h3>
+                    </div>
+                    <div class="Rtable-cell Rtable-cell--1of1">
+                        <p class="sectionContentSubTitle"><span>2014</span><span>Force of Nature
+                                Alliance</span><span>Vancouver, BC</span></p>
+                        <h3 class="sectionContentTitle">Community Outreach Manager</h3>
+                        <ul>
+                            <li>
+                                <p>Determined organising to mobilise voters to support ecologically-responsible
+                                    technologies, fuel-alternatives, and exuviating our dependence on tar-sands-based
+                                    pipelines.</p>
+                            </li>
+                            <li>
+                                <p>Rallying team of cohorts to regularly engage the public in key political ridings by
+                                    door-to-door canvassing, tabling, phone banking.</p>
+                            </li>
+                            <li>
+                                <p>Collaboratively assisting in NationBuilder frontend design using Sass for CSS, Liquid
+                                    markup language, and responsive HTML5.</p>
+                            </li>
+                            <li>
+                                <p>Cultivating resource and team organising by engaging in ongoing leadership trainings
+                                    by OrganizeBC.</p>
+                            </li>
+                            <li>
+                                <p>Environmental advocacy (LeadNow, Dogwood Initiative, ForestEthics).</p>
+                            </li>
+                            <li>
+                                <p>English teacher and learning Mandarin for four months in Hunan, China.</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="Rtable-cell Rtable-cell--head">
+                        <h3 class="sectionContentTitle">Education</h3>
+                    </div>
+                    <div class="Rtable-cell Rtable-cell--1of1">
+                        <p class="sectionContentSubTitle">2005–2010<em>University of British Columbia</em> Vancouver, BC
+                        </p>
+                        <p>B.A.Sc. Computer Engineering program, Software Engineering specialization</p>
+                        <ul>
+                            <li>
+                                <p>Dean’s list recognition of excellence for two semesters.</p>
+                            </li>
+                            <li>
+                                <p>Fourth year in program.</p>
+                            </li>
+                            <li>
+                                <p>Excelled as software development leader in multiple computer engineering project
+                                    groups.</p>
+                            </li>
+                            <li>
+                                <p>Project course in security engineering project with focus on designing usable
+                                    software security and access control within distributed systems.</p>
+                            </li>
+                            <li>
+                                <p>Granted NSERC Undergraduate Student Research Award to apply creative firmware
+                                    engineering methods in four months of supervised lab research in EECE department.­­
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="Rtable-cell  Rtable-cell--1of1">
+                        <p class="sectionContentSubTitle">2000–2005<em>Moorpark Community College</em>Moorpark, CA</p>
+                        <p>Physics and Electrical Engineering</p>
+                        <ul>
+                            <li>
+                                <p>Overall GPA of 3.63, A average.</p>
+                            </li>
+                            <li>
+                                <p>Placed on Dean’s List for four semesters consecutively.</p>
+                            </li>
+                        </ul>
+                        <p>USA national silver medallist of college speech and forensics team. </p>
+                    </div>
+                    <div class="Rtable-cell Rtable-cell--head">
+                        <h3 class="sectionContentTitle">Interests</h3>
+                    </div>
+                    <div class="Rtable-cell">
+                        <p>Competitive chess, public speaking, philosophy of science, ethics, Philosophers’ Cafés. </p>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <!-- Links to expore your past projects and download your CV -->
+        <aside class="externalResourcesNav"> <a
+                href="https://files.acrobat.com/a/preview/9d1519ee-716d-4cbf-ad0e-9cefd434be89" target="_blank"
+                title="Download CV Link">
+                <div class="externalResources">DOWNLOAD CV </div>
+            </a> <a href="https://www.behance.net/mavaddat" target="_blank" title="Behance Link">
+                <div class="externalResources">BEHANCE</div>
+            </a> <a href="https://github.com/mavaddat" target="_blank" title="Github Link">
+                <div class="externalResources">GITHUB</div>
+            </a> </aside>
+    </section>
+    <footer>
+        <hr>
+        <div class="social-icons">
+            <!--    <h4 class="_14">Follow me on</h4>-->
+            <ul class="social-icons">
+                <li><a href="https://www.facebook.com/mavaddat" class="social-icon"> <i class="fab fa-facebook"></i></a>
+                </li>
+                <li><a href="https://twitter.com/mavaddat" class="social-icon"> <i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://mavaddat.wordpress.com?feed=rss" class="social-icon"> <i
+                            class="fas fa-rss"></i></a></li>
+                <li><a href="https://www.youtube.com/mavaddat" class="social-icon"> <i class="fab fa-youtube"></i></a>
+                </li>
+                <li><a href="https://www.linkedin.com/in/mavaddat/" class="social-icon"> <i
+                            class="fab fa-linkedin"></i></a></li>
+                <li><a href="https://plus.google.com/+MavaddatJavid" class="social-icon"> <i
+                            class="fab fa-google-plus"></i></a></li>
+            </ul>
+        </div>
+        <p class="footerDisclaimer">&copy; 2017
+            <script>
+                new Date().getFullYear() > 2010 && document.write("-" + new Date().getFullYear());
+            </script>
+            Copyrights - All Rights Reserved</p>
+        <p class="footerNote">Mavaddat Javid - <a
+                href="javascript:location='mailto:\u006a\u0061\u0076\u0069\u0064\u0040\u006d\u0061\u0076\u0061\u0064\u0064\u0061\u0074\u002e\u0063\u0061';void 0">&#069;&#109;&#097;&#105;&#108;&#032;&#109;&#101;</a>
+        </p>
+    </footer>
+    <script>
+        (function ($) {
+            "use strict";
+            $.fn.responsiveTable = function () {
 
-        $(this).find(".Tab").click(function() {
-          $(this).attr("aria-selected", "true").siblings().attr("aria-selected", "false");
-          toggleColumns($(this).parents(".Rtable"));
-        });
+                var toggleColumns = function ($table) {
+                    var selectedControls = [];
+                    $table.find(".Accordion, .Tab").each(function () {
+                        selectedControls.push($(this).attr("aria-selected"));
+                    });
+                    var cellCount = 0,
+                        colCount = 0;
+                    var setNum = $table.find(".Rtable-cell").length / Math.max($table.find(".Tab").length,
+                        $table.find(".Accordion").length);
+                    $table.find(".Rtable-cell").each(function () {
+                        $(this).addClass("hiddenSmall");
+                        if (selectedControls[colCount] === "true") $(this).removeClass(
+                            "hiddenSmall");
+                        cellCount++;
+                        if (cellCount % setNum === 0) colCount++;
+                    });
+                };
+                $(this).each(function () {
+                    toggleColumns($(this));
+                });
 
-        $(this).find(".Accordion").click(function() {
-          $(this).attr("aria-selected", $(this).attr("aria-selected") !== "true");
-          toggleColumns($(this).parents(".Rtable"));
-        });
+                $(this).find(".Tab").click(function () {
+                    $(this).attr("aria-selected", "true").siblings().attr("aria-selected", "false");
+                    toggleColumns($(this).parents(".Rtable"));
+                });
 
-      };
-    }(jQuery));
+                $(this).find(".Accordion").click(function () {
+                    $(this).attr("aria-selected", $(this).attr("aria-selected") !== "true");
+                    toggleColumns($(this).parents(".Rtable"));
+                });
+
+            };
+        }(jQuery));
 
 
-    $(".js-RtableTabs, .js-RtableAccordions").responsiveTable();
-    //# sourceURL=pen.js
-  </script>
+        $(".js-RtableTabs, .js-RtableAccordions").responsiveTable();
+        //# sourceURL=pen.js
+    </script>
 </body>
+
 </html>
