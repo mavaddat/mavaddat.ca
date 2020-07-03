@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
     <script type="text/javascript" async="true">
@@ -11,7 +12,7 @@
             var firstScript = document.getElementsByTagName('script')[0];
             var milliseconds = new Date().getTime();
             var url = 'https://quantcast.mgr.consensu.org'
-                .concat('/choice/', 'DffhEACkSgqrA', '/', host, '/choice.js')__tcfapi
+                .concat('/choice/', 'DffhEACkSgqrA', '/', host, '/choice.js')
                 .concat('?timestamp=', milliseconds);
             var uspTries = 0;
             var uspTriesLimit = 3;
@@ -103,7 +104,6 @@
                                         callId: payload.callId
                                     }
                                 };
-
                                 if (msgIsString) {
                                     returnMsg = JSON.stringify(returnMsg);
                                 }
@@ -170,54 +170,58 @@
     <!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script>
-		__tcfapi('addEventListener', 2, ()=>{
-			var head = document.getElementsByTagName('head')[0];
-			var js = document.createElement("script");
-			js.type = "text/javascript";
-			js.src = "https://www.googletagmanager.com/gtag/js?id=UA-44575628-4";
-			js.async = true;
-			head.appendChild(js);
-		});
-        __tcfapi('addEventListener', 2, ()=>{window.dataLayer = window.dataLayer || [];
+        __tcfapi('addEventListener', 2, () => {
+            var head = document.getElementsByTagName('head')[0];
+            var js = document.createElement("script");
+            js.type = "text/javascript";
+            js.src = "https://www.googletagmanager.com/gtag/js?id=UA-44575628-4";
+            js.async = true;
+            head.appendChild(js);
+        });
+        __tcfapi('addEventListener', 2, () => {
+            window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-        gtag('config', 'UA-44575628-4');});
+            gtag('config', 'UA-44575628-4');
+        });
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-        __tcfapi('addEventListener', 2, ()=>{(function (d, w, c) {
-            (w[c] = w[c] || []).push(function () {
-                try {
-                    w.yaCounter50873759 = new Ya.Metrika2({
-                        id: 50873759,
-                        clickmap: true,
-                        trackLinks: true,
-                        accurateTrackBounce: true,
-                        webvisor: true,
-                        trackHash: true
-                    });
-                } catch (e) {}
-            });
+        __tcfapi('addEventListener', 2, () => {
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function () {
+                    try {
+                        w.yaCounter50873759 = new Ya.Metrika2({
+                            id: 50873759,
+                            clickmap: true,
+                            trackLinks: true,
+                            accurateTrackBounce: true,
+                            webvisor: true,
+                            trackHash: true
+                        });
+                    } catch (e) {}
+                });
 
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () {
-                    n.parentNode.insertBefore(s, n);
-                };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/tag.js";
+                var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () {
+                        n.parentNode.insertBefore(s, n);
+                    };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "https://mc.yandex.ru/metrika/tag.js";
 
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else {
-                f();
-            }
-        })(document, window, "yandex_metrika_callbacks2");});
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else {
+                    f();
+                }
+            })(document, window, "yandex_metrika_callbacks2");
+        });
     </script>
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/50873759" style="position:absolute; left:-9999px;" alt="" /></div>
@@ -239,12 +243,18 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="canonical" href="https://www.mavaddat.ca" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+        integrity="sha512-3n19xznO0ubPpSwYCRRBgHh63DrV+bdZfHK52b1esvId4GsfwStQNPJFjeQos2h3JwCmZl0/LgLxSKMAI55hgw=="
+        crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link data-dump-line-numbers="all" data-global-vars="" rel="stylesheet/less" type="text/css"
         href="less/styles.less">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
     <script type="text/javascript">
         less = {
             async: true,
@@ -259,16 +269,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Twitter universal website tag code -->
     <script>
-        __tcfapi('addEventListener', 2, ()=>{! function (e, t, n, s, u, a) {
-            e.twq || (s = e.twq = function () {
-                    s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
-                }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src =
-                '//static.ads-twitter.com/uwt.js',
-                a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
-        }(window, document, 'script');
-        // Insert Twitter Pixel ID and Standard Event data below
-        twq('init', 'o0kgy');
-        twq('track', 'PageView');})
+        __tcfapi('addEventListener', 2, () => {
+            ! function (e, t, n, s, u, a) {
+                e.twq || (s = e.twq = function () {
+                        s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+                    }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src =
+                    '//static.ads-twitter.com/uwt.js',
+                    a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+            }(window, document, 'script');
+            // Insert Twitter Pixel ID and Standard Event data below
+            twq('init', 'o0kgy');
+            twq('track', 'PageView');
+        })
     </script>
     <!-- End Twitter universal website tag code -->
     <title>About Mavaddat</title>
