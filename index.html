@@ -168,69 +168,89 @@
         })();
     </script>
     <!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script>
-        __tcfapi('addEventListener', 2, () => {
-            var head = document.getElementsByTagName('head')[0];
-            var js = document.createElement("script");
-            js.type = "text/javascript";
-            js.src = "https://www.googletagmanager.com/gtag/js?id=UA-44575628-4";
-            js.async = true;
-            head.appendChild(js);
-        });
-        __tcfapi('addEventListener', 2, () => {
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
+        const googlTMCallback = (tcData, success) => {
+            if (success && tcData.eventStatus === 'tcloaded') {
+                var head = document.getElementsByTagName('head')[0];
+                var js = document.createElement("script");
+                js.type = "text/javascript";
+                js.src = "https://www.googletagmanager.com/gtag/js?id=UA-44575628-4";
+                js.async = true;
+                head.appendChild(js);
+                __tcfapi('removeEventListener', 2, (success) => {
+                    if (success) {
+                        console.log("Successfully added googlTMCallback to CMP\ntcData: ",tcData)
+                     }
+                }, tcData.listenerId);
+            } else {
+                console.log("User refused googlTMCallback for CMP\ntcData: ",tcData)
             }
-            gtag('js', new Date());
+        }
+        __tcfapi('addEventListener', 2, googlTMCallback);
+        const googlUA = (tcData, success) => {
+            if (success && tcData.eventStatus === 'tcloaded') {
+                window.dataLayer = window.dataLayer || [];
 
-            gtag('config', 'UA-44575628-4');
-        });
-    </script>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        __tcfapi('addEventListener', 2, () => {
-            (function (d, w, c) {
-                (w[c] = w[c] || []).push(function () {
-                    try {
-                        w.yaCounter50873759 = new Ya.Metrika2({
-                            id: 50873759,
-                            clickmap: true,
-                            trackLinks: true,
-                            accurateTrackBounce: true,
-                            webvisor: true,
-                            trackHash: true
-                        });
-                    } catch (e) {}
-                });
-
-                var n = d.getElementsByTagName("script")[0],
-                    s = d.createElement("script"),
-                    f = function () {
-                        n.parentNode.insertBefore(s, n);
-                    };
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = "https://mc.yandex.ru/metrika/tag.js";
-
-                if (w.opera == "[object Opera]") {
-                    d.addEventListener("DOMContentLoaded", f, false);
-                } else {
-                    f();
+                function gtag() {
+                    dataLayer.push(arguments);
                 }
-            })(document, window, "yandex_metrika_callbacks2");
-        });
+                gtag('js', new Date());
+
+                gtag('config', 'UA-44575628-4');
+                __tcfapi('removeEventListener', 2, (success) => {
+                    if (success) {console.log("Successfully added googlUA to CMP\ntcData: ",tcData)}
+                }, tcData.listenerId);
+            } else {
+                console.log("User refused googlUA for CMP\ntcData: ",tcData)
+            }
+        }
+        __tcfapi('addEventListener', 2, googlUA);
+
+    //Yandex.Metrika counter
+        const yandMet = (tcData, success) => {
+            if (success && tcData.eventStatus === 'tcloaded') {
+
+                (function (d, w, c) {
+                    (w[c] = w[c] || []).push(function () {
+                        try {
+                            w.yaCounter50873759 = new Ya.Metrika2({
+                                id: 50873759,
+                                clickmap: true,
+                                trackLinks: true,
+                                accurateTrackBounce: true,
+                                webvisor: true,
+                                trackHash: true
+                            });
+                        } catch (e) {}
+                    });
+
+                    var n = d.getElementsByTagName("script")[0],
+                        s = d.createElement("script"),
+                        f = function () {
+                            n.parentNode.insertBefore(s, n);
+                        };
+                    s.type = "text/javascript";
+                    s.async = true;
+                    s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+                    if (w.opera == "[object Opera]") {
+                        d.addEventListener("DOMContentLoaded", f, false);
+                    } else {
+                        f();
+                    }
+                })(document, window, "yandex_metrika_callbacks2");
+                __tcfapi('removeEventListener', 2, (success) => {
+                    if (success) {console.log("Successfully added yandMet to CMP\ntcData: ",tcData)}
+                }, tcData.listenerId);
+            } else {
+                console.log("User refused yandMet for CMP\ntcData: ",tcData)
+            }
+        }
+        __tcfapi('addEventListener', 2, yandMet);
     </script>
     <noscript>
         <div><img src="https://mc.yandex.ru/watch/50873759" style="position:absolute; left:-9999px;" alt="" /></div>
     </noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!--
-  <script src='scripts/live_console_runner.js'></script>
-  <script src='scripts/css_live_reload_init.js'></script>  -->
-
 
     <meta name="yandex-verification" content="04ca54d67c3ba6a4" />
     <meta charset="UTF-8">
@@ -269,7 +289,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Twitter universal website tag code -->
     <script>
-        __tcfapi('addEventListener', 2, () => {
+        __tcfapi('addEventListener', 2, (tcData, success) => {
             ! function (e, t, n, s, u, a) {
                 e.twq || (s = e.twq = function () {
                         s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
