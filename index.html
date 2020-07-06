@@ -168,7 +168,7 @@
     </script>
     <!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
     <script>
-        const googlTMCallback = (tcData, success) => {
+        const googlTM = (tcData, success) => {
             if (success && tcData.eventStatus === 'tcloaded') {
                 var head = document.getElementsByTagName('head')[0];
                 var js = document.createElement("script");
@@ -178,14 +178,14 @@
                 head.appendChild(js);
                 __tcfapi('removeEventListener', 2, (success) => {
                     if (success) {
-                        console.log("Successfully added googlTMCallback to CMP\ntcData: ", tcData)
+                        console.log("Successfully added googlTMto CMP\ntcData: ", tcData)
                     }
                 }, tcData.listenerId);
             } else {
-                console.log("User refused googlTMCallback for CMP\ntcData: ", tcData)
+                console.log("User refused googlTM for CMP\ntcData: ", tcData)
             }
         }
-        __tcfapi('addEventListener', 2, googlTMCallback);
+        __tcfapi('addEventListener', 2, googlTM);
         const googlUA = (tcData, success) => {
             if (success && tcData.eventStatus === 'tcloaded') {
                 window.dataLayer = window.dataLayer || [];
