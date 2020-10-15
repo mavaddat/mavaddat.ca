@@ -4,6 +4,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+	.section1Content {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-box-align: stretch;
+    -moz-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    }
+		.gr{
+			display: table-row;
+		}
+		.gr > * {
+			display: table-cell;
+		}
+.gr:nth-child(1) {
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    }
+
+.gr:nth-child(2) {
+    -webkit-box-ordinal-group: 2;
+    -moz-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    }
+
+.gr:nth-child(3) {
+    -webkit-box-ordinal-group: 3;
+    -moz-box-ordinal-group: 3;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    order: 2;
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    }
+
+	@-moz-document url-prefix() {
+	.section1Content {
+		width: 100%;
+		-moz-box-sizing: border-box;
+		}
+
+}
+	</style>
   <!-- Quantcast Tag -->
   <script type="text/javascript">
     var _qevents = _qevents || [];
@@ -336,15 +429,15 @@
     <div class="profilePhoto">
       <!-- Profile photo -->
       <picture> <img sizes="(max-width: 884px) 100vw, 884px" srcset="
-mavaddatburnabymountain_gvdsew_c_scale,w_29.png 29w,
-mavaddatburnabymountain_gvdsew_c_scale,w_256.png 256w,
-mavaddatburnabymountain_gvdsew_c_scale,w_385.png 385w,
-mavaddatburnabymountain_gvdsew_c_scale,w_490.png 490w,
-mavaddatburnabymountain_gvdsew_c_scale,w_582.png 582w,
-mavaddatburnabymountain_gvdsew_c_scale,w_666.png 666w,
-mavaddatburnabymountain_gvdsew_c_scale,w_743.png 743w,
-mavaddatburnabymountain_gvdsew_c_scale,w_816.png 816w,
-mavaddatburnabymountain_gvdsew_c_scale,w_884.png 884w" src="mavaddatburnabymountain_gvdsew_c_scale,w_884.png"
+images/mavaddatburnabymountain_gvdsew_c_scale,w_29.png 29w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_256.png 256w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_385.png 385w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_490.png 490w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_582.png 582w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_666.png 666w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_743.png 743w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_816.png 816w,
+images/mavaddatburnabymountain_gvdsew_c_scale,w_884.png 884w" src="images/mavaddatburnabymountain_gvdsew_c_scale,w_884.png"
           alt="Mavaddat on Burnaby Mountain"> </picture>
     </div>
     <!-- Identity details -->
